@@ -1,0 +1,46 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2024. 6. 5., 오전 3:13:08
+    Author     : kjh27
+*/
+.brightImageView {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.7), 1, 0, 0, 0);
+    -fx-opacity: 1.0; /* Set initial opacity */
+    transition: -fx-opacity 0.3s; /* Add transition for smooth effect */
+    
+}
+
+.brightImageView:hover {
+    -fx-opacity: 0.9; /* Reduce opacity on hover to make it appear brighter */
+}
+
+.menu-bar{
+    -fx-background-color: black;
+    -fx-padding: 1em;
+    -fx-min-height: 40px;
+}
+
+.menu-bar .menu{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16pt;
+    -fx-font-family: "Arial";
+}
+
+.menu-bar .menu .menu-item{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: transparent;
+    -fx-font-size: 14pt;
+}
+
+.menu:hover{
+    -fx-background-color: #444444;
+}
+.menu-item:hover{
+    -fx-background-color: #555555;
+}
+.menu-item:focused{
+    -fx-background-color: #555555;
+}

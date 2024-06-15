@@ -1,0 +1,50 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.scroll-pane {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: #3a0ca3;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+#barhintergrund{
+    -fx-background-color:  #231942;
+}
+
+#hintergrund{
+    -fx-background-color:  #220901;
+}
+
+#rundknopf{
+    -fx-background-radius: 5em;  
+    -fx-min-width: 20px;  
+    -fx-min-height: 20px; 
+    -fx-max-width: 20px; 
+    -fx-max-height: 20px;
+}

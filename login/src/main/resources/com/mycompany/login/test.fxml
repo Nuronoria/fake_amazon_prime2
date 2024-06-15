@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TestController">
+   <center>
+      <ScrollPane minHeight="200.0" minWidth="1920.0" prefHeight="1000.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane id="hintergrund" minHeight="5000.0" minWidth="1920.0" prefHeight="5000.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="781.0" spacing="20.0" AnchorPane.leftAnchor="30.0">
+                     <children>
+                        <Label prefHeight="56.0" prefWidth="903.0" text="deine mudda stinkt" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@movieposter.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@movieposter2.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@movieposter3.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <ToolBar id="barhintergrund" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button id="rundknopf" mnemonicParsing="false" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+          </Button>
+        </items>
+      </ToolBar>
+   </top>
+   <stylesheets>
+   <URL value="@test.css" />
+   </stylesheets>
+</BorderPane>

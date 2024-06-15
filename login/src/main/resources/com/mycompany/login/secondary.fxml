@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="900.0" style="-fx-background-color: black;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.SecondaryController">
+   <children>
+      <Label layoutX="80.0" layoutY="153.0" text="Prime" textFill="#446fef">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="160.0" layoutY="153.0" prefHeight="26.0" prefWidth="158.0" text="Beliebte Filme" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="707.0" layoutY="14.0" prefHeight="70.0" prefWidth="178.0" text="User Name">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@user_8742495.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <AnchorPane fx:id="mainslide" layoutX="-50.0" layoutY="202.0" prefHeight="438.0" prefWidth="900.0">
+         <children>
+            <Pane fx:id="movieanch1" layoutX="100.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                   <ImageView fx:id="movie1" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                        <Image url="@Queen_of_Tears_poster.png" />
+                       </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                   </ImageView>
+                  <Pane fx:id="slider1" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip1" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="The series depicts the crisis and rekindling of love between Hong Hae-in, a third-generation chaebol heiress of Queens ....">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Queen of Tears" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch2" layoutX="300.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie2" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@movieposter2.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider2" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip2" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="The sequel to Joker (2019), loosely based on DC Comics characters, Joaquin Phoenix reprises his role as the ...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Joker" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch3" layoutX="500.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie3" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@movieposter3.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider3" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip3" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="After Russell wins Adelaide a Michael Jackson 'Thriller' T-shirt at a carnival game and plays Whac-a-Mole, Adelai...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Us" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch4" layoutX="700.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie4" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@movieposter.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider4" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip4" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="In Miami, a drug dealer named Juan (Mahershala Ali) meets with one of his boys near the dope holes in town...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Moonlight" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <ImageView fx:id="nextSlideButton" fitHeight="63.0" fitWidth="42.0" layoutX="890.0" layoutY="86.0" onMouseClicked="#nextSlide" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="movieanch5" layoutX="1000.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie5" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@25496-170428poster3-posterjpg.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider5" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip5" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="On top of a mountain, a bunch of mountain goats are mining, when Tai Lung shows up and destroys the mountain....">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Kung Fu Panda 4" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch6" layoutX="1200.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie6" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@MV5BODcxMzY3ODY1NF5BMl5BanBnXkFtZTgwNzg1NDY4MTE@._V1_.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider6" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip6" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="A woman, accidentally caught in a dark deal, turns the tables on her captors and transforms into a merciless ...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Lucy" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch7" layoutX="1400.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie7" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@61yXOCGp2lL._AC_UF894,1000_QL80_.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider7" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip7" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="A HUGE rumble of costumed characters breaks out. Ted is duct taped to a table. Donny and the exec are ready to  ...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="Ted2" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="movieanch8" layoutX="1600.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="movie8" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lalaland.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Pane fx:id="slider8" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextArea fx:id="moviedescrip8" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their ...">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="23.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" styleClass="brightImageView">
+                           <image>
+                              <Image url="@play-button-icon-png-18927.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="73.0" styleClass="brightImageView" text="Abspielen" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="115.0" text="La La Land" textFill="#d4d4d4">
+                           <font>
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="19.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@peh.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <ImageView fx:id="nextSlideButton1" fitHeight="63.0" fitWidth="42.0" layoutX="965.0" layoutY="86.0" onMouseClicked="#previousSlide" opacity="0.3" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <MenuBar fx:id="menuBar" layoutX="80.0" layoutY="49.0" prefHeight="70.0" prefWidth="510.0">
+        <menus>
+          <Menu fx:id="menuBarItem" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
