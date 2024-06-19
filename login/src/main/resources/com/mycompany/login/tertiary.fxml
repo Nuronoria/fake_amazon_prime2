@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -38,7 +39,7 @@
                         </Label>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label text="Anna Lisa S." textFill="DARKGRAY">
+                              <Label fx:id="username0" text="Anna Lisa S." textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -56,7 +57,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label prefHeight="44.0" prefWidth="110.0" text="12.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date0" prefHeight="44.0" prefWidth="110.0" text="12.Juni.2024" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -64,7 +65,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Rating disable="true" prefHeight="34.0" prefWidth="176.0" rating="5.0">
+                              <Rating fx:id="rating0" disable="true" prefHeight="34.0" prefWidth="176.0" rating="0.0">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -76,7 +77,7 @@
                         </HBox>
                         <HBox prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label prefHeight="31.0" prefWidth="736.0" text="&quot;Super Film! Tolle Effekte und spannende Story. Absolut empfehlenswert!&quot;" textFill="WHITE">
+                              <Label fx:id="comment0" prefHeight="31.0" prefWidth="736.0" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -88,7 +89,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label text="Markus T." textFill="DARKGRAY">
+                              <Label fx:id="username1" text="Markus T." textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -106,7 +107,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label prefHeight="44.0" prefWidth="110.0" text="10.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date1" prefHeight="44.0" prefWidth="110.0" text="10.Juni.2024" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -114,7 +115,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Rating disable="true" prefHeight="34.0" prefWidth="176.0" rating="3.0">
+                              <Rating fx:id="rating1" disable="true" prefHeight="34.0" prefWidth="176.0" rating="3.0">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -123,7 +124,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label prefHeight="31.0" prefWidth="736.0" text="&quot;Der Film war insgesamt in Ordnung. Die Handlung hatte einige interessante Momente.&quot;" textFill="WHITE">
+                              <Label fx:id="comment1" prefHeight="31.0" prefWidth="736.0" text="&quot;Der Film war insgesamt in Ordnung. Die Handlung hatte einige interessante Momente.&quot;" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -135,7 +136,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label text="David K." textFill="DARKGRAY">
+                              <Label fx:id="username2" text="David K." textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -153,7 +154,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label prefHeight="44.0" prefWidth="110.0" text="09.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date2" prefHeight="44.0" prefWidth="110.0" text="09.Juni.2024" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -161,7 +162,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Rating disable="true" prefHeight="34.0" prefWidth="176.0">
+                              <Rating fx:id="rating2" disable="true" prefHeight="34.0" prefWidth="176.0">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -170,7 +171,7 @@
                         </HBox>
                         <HBox prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label prefHeight="31.0" prefWidth="736.0" text="&quot;Leider hat mich der Film enttäuscht. Die Handlung war vorhersehbar und es fehlte an Spannung.&quot;" textFill="WHITE">
+                              <Label fx:id="comment2" prefHeight="31.0" prefWidth="736.0" text="&quot;Leider hat mich der Film enttäuscht. Die Handlung war vorhersehbar und es fehlte an Spannung.&quot;" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -187,7 +188,7 @@
                         <Image url="@jokerlogo.PNG" />
                      </image>
                   </ImageView>
-                  <JFXTextArea fx:id="moviedescript" layoutX="59.0" layoutY="513.0" prefHeight="255.0" prefWidth="782.0" text="Joker: Folie à Deux[a] is an upcoming American musical psychological thriller film directed by Todd Phillips from a screenplay co-written with Scott Silver. The sequel to Joker (2019), loosely based on DC Comics characters, Joaquin Phoenix reprises his role as the Joker, with Lady Gaga joining the cast as his love interest, Harley Quinn. Zazie Beetz also reprises her role from the previous film, while Brendan Gleeson, and Catherine Keener also join the cast. It is produced by Warner Bros. Pictures and DC Studios in association with Joint Effort.">
+                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="513.0" prefHeight="255.0" prefWidth="782.0">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -197,6 +198,15 @@
                         <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
                      </image>
                   </ImageView>
+                  <VBox layoutX="707.0" layoutY="875.0" prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 1;">
+                     <children>
+                        <JFXButton onMouseClicked="#onAddComment" styleClass="addComment" text="+ Add Comment" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
         </content>

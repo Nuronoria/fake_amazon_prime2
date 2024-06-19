@@ -7,4 +7,5 @@ module com.mycompany.login {
     opens com.mycompany.login to javafx.fxml;
     exports com.mycompany.login;
     requires com.jfoenix;
+    requires org.controlsfx.controls;
 }

@@ -53,6 +53,9 @@ public class LoginCheck {
             //rs = resultSet
             ResultSet rs = stm.executeQuery(sql);
             
+            
+        
+            
             if(rs.next()){
                 System.out.println("right userlogin");
                 return(true);

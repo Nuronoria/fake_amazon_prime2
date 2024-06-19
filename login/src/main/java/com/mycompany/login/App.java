@@ -16,8 +16,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
-        //scene = new Scene(loadFXML("secondary"));
+        //scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("secondary"));
         /*hier können wir css hinzufügen
         scene.getStylesheets().add(getClass().getResource("fontstyle.css").toExternalForm());*/
         stage.setTitle("Fake-Amazon-Prime");
