@@ -486,6 +486,10 @@ public class SecondaryController implements Initializable {
     private void toAdmin(MouseEvent event) {
     }
 
+    @FXML
+    private void onRefresh(MouseEvent event) {
+    }
+
 
 
 }
