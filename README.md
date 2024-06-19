@@ -1,3 +1,3 @@
-# fake-amazon-prime2
+# fake-amazon-prime
 
 This is a University Project imitating Amazon Prime

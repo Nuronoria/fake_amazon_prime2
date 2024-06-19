@@ -4,6 +4,8 @@
  */
 package com.mycompany.login;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
 import javafx.util.Duration;
 import java.util.ResourceBundle;
@@ -18,11 +20,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import com.jfoenix.controls.JFXTextArea;
+import java.io.IOException;
 import javafx.animation.TranslateTransition;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 /**
@@ -31,7 +39,16 @@ import javafx.scene.input.MouseEvent;
  * @author kjh27
  */
 public class SecondaryController implements Initializable {
-
+    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
+    @FXML
+    private JFXButton MenuButton1;
+    
+        @FXML
+    private JFXButton MenuButton0;
 
     @FXML
     private ImageView movie1;
@@ -117,9 +134,15 @@ public class SecondaryController implements Initializable {
     @FXML
     private ImageView nextSlideButton1;
     @FXML
-    private MenuBar menuBar;
+    private JFXButton MenuButtonItem0;
     @FXML
-    private Menu menuBarItem;
+    private JFXButton MenuButton2;
+    @FXML
+    private JFXButton MenuButtonItem1;
+    @FXML
+    private AnchorPane mainslide2;
+
+
     
 
     /**
@@ -139,9 +162,10 @@ public class SecondaryController implements Initializable {
         
         
         nextSlideButton.setOpacity(0);
-
-
-
+        
+        MenuButton1.setOpacity(0);
+        MenuButtonItem0.setOpacity(0);
+        MenuButtonItem1.setOpacity(0);
 
    
         
@@ -244,7 +268,7 @@ public class SecondaryController implements Initializable {
         FadeTransition fadeOut5 = new FadeTransition(Duration.seconds(0.5), slider5);
         fadeOut5.setToValue(0);
         
-                slider6.setOpacity(0);
+         slider6.setOpacity(0);
         FadeTransition fadeIn6 = new FadeTransition(Duration.seconds(0.5), slider6);
         fadeIn6.setToValue(1);
 
@@ -277,16 +301,22 @@ public class SecondaryController implements Initializable {
         FadeTransition fadeOutButton1 = new FadeTransition(Duration.seconds(0.2), nextSlideButton1);
         fadeOutButton1.setToValue(0);
         
+        slider1.setDisable(true);
+        
+        
         
         movie1.setOnMouseEntered(event -> {
             scaleIn.play(); // 확대 애니메이션 재생
             fadeIn.play(); 
+            
+            slider1.setDisable(false);
 
         });
              
         movieanch1.setOnMouseExited(event -> {
             scaleOut.play(); // 확대 애니메이션 재생
             fadeOut.play(); 
+            slider1.setDisable(true);
         });
         
                 movie2.setOnMouseEntered(event -> {
@@ -376,8 +406,42 @@ public class SecondaryController implements Initializable {
                 fadeOutButton.play(); 
             
         });
+        
      
-    }    
+    }
+    @FXML
+    void onUserButton(MouseEvent event) {
+        MenuButton1.setOpacity(0.7);
+        MenuButton1.setStyle("-fx-background-color: #494949");
+        MenuButton0.setStyle("-fx-background-color: #494949");
+        
+    }
+    @FXML
+    void outUserButton(MouseEvent event) {
+        MenuButton1.setOpacity(0);
+        MenuButton1.setStyle("-fx-background-color: transparent");
+        MenuButton0.setStyle("-fx-background-color: transparent");
+
+    }        
+    @FXML
+    void onClickedLogout(MouseEvent event) throws IOException {
+        System.out.println("Logout was successful.");
+        root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    @FXML
+    void onClickedMovie(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     @FXML
     private void nextSlide(MouseEvent event) {
@@ -399,5 +463,27 @@ public class SecondaryController implements Initializable {
         
         transition.play();
     }
+
+    @FXML
+    private void outMenuButton2(MouseEvent event) {
+        MenuButton2.setOpacity(0.7);
+        MenuButtonItem0.setOpacity(0);
+        MenuButtonItem1.setOpacity(0);
+        MenuButtonItem0.setStyle("-fx-background-color: transparent");
+        MenuButtonItem1.setStyle("-fx-background-color: transparent");
+        MenuButton2.setStyle("-fx-background-color: transparent");
+    }
+
+    @FXML
+    private void onMenuButton2(MouseEvent event) {
+        MenuButtonItem0.setOpacity(1);
+        MenuButtonItem1.setOpacity(1);
+        MenuButton2.setOpacity(1);
+        MenuButtonItem0.setStyle("-fx-background-color: #494949");
+        MenuButtonItem1.setStyle("-fx-background-color: #494949");
+        MenuButton2.setStyle("-fx-background-color: #494949");
+    }
+
+
 
 }

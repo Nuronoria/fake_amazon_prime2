@@ -140,14 +140,5 @@ public class PrimaryController implements Initializable {
             pass_hidden.positionCaret(pass_hidden.getText().length());
         }
     }
-
-    @FXML
-    private void skip(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     
 }

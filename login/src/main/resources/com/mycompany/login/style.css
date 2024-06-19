@@ -24,23 +24,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .menu-bar .menu{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 16pt;
+    -fx-text-fill: #494949;
+    -fx-font-size: 14pt;
     -fx-font-family: "Arial";
 }
 
 .menu-bar .menu .menu-item{
-    -fx-text-fill: #ffffff;
-    -fx-background-color: transparent;
+    -fx-text-fill: #aaa;
     -fx-font-size: 14pt;
 }
 
 .menu:hover{
-    -fx-background-color: #444444;
+    -fx-background-color: #494949;
 }
 .menu-item:hover{
-    -fx-background-color: #555555;
+    -fx-background-color: #A9A9A9;
 }
 .menu-item:focused{
-    -fx-background-color: #555555;
+    -fx-background-color: #494949;
+}
+.buttonStyle{
+    transition: -fx-opacity 0.3s; /* Add transition for smooth effect */
+}
+
+.buttonStyle:hover{
+    -fx-background-color: #494949;
+    -fx-opacity: 0.9;
 }
