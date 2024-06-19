@@ -56,7 +56,6 @@
                   <Font name="Calibri Italic" size="12.0" />
                </font>
             </Label>
-            <CheckBox fx:id="checkboxdb" focusTraversable="false" layoutX="114.0" layoutY="325.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="Jakub's Database" />
             <Label fx:id="warnung" alignment="CENTER" layoutX="32.0" layoutY="143.0" prefHeight="17.0" prefWidth="282.0" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="14.0" />

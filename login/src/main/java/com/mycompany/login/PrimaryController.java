@@ -35,8 +35,6 @@ public class PrimaryController implements Initializable {
     @FXML
     private TextField inputUserID;
     @FXML
-    private CheckBox checkboxdb;
-    @FXML
     private Label warnung;
     @FXML
     private PasswordField pass_hidden;
@@ -62,51 +60,28 @@ public class PrimaryController implements Initializable {
         } else {
             password = pass_hidden.getText();
         }
-        if(checkboxdb.isSelected()){
-            LoginCheck a = new LoginCheck(username,password);
-            if(a.userCompare()){
-                System.out.println("Login success.");
-                root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }else{
-                System.out.println("Login failure.");
-            pass_hidden.setText("");
-            pass_text.setText("");
-            if(pass_toggle.isSelected()){
-                pass_text.requestFocus();
-                pass_text.positionCaret(pass_text.getText().length()); 
-            } else {
-                pass_hidden.requestFocus();
-                pass_hidden.positionCaret(pass_hidden.getText().length());
-            }
-            warnung.setText("Username or Password is wrong!");
-            }
+        LoginCheck a = new LoginCheck(username,password);
+        if(a.userCompare()){
+            System.out.println("Login success.");
+            root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }else{
-            if(username.equals("Admin") && password.equals("admin")){
-                System.out.println("Login success.");
-                root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                //stage.setMaximized(true);
-                stage.setScene(scene);
-                stage.show();
-            }else{
-                System.out.println("Login failure.");
-            pass_hidden.setText("");
-            pass_text.setText("");
-            if(pass_toggle.isSelected()){
-                pass_text.requestFocus();
-                pass_text.positionCaret(pass_text.getText().length()); 
-            } else {
-                pass_hidden.requestFocus();
-                pass_hidden.positionCaret(pass_hidden.getText().length());
-            }
-            warnung.setText("Username or Password is wrong!");
-            }
-        }       
+            System.out.println("Login failure.");
+        pass_hidden.setText("");
+        pass_text.setText("");
+        if(pass_toggle.isSelected()){
+            pass_text.requestFocus();
+            pass_text.positionCaret(pass_text.getText().length()); 
+        } else {
+            pass_hidden.requestFocus();
+            pass_hidden.positionCaret(pass_hidden.getText().length());
+        }
+        warnung.setText("Username or Password is wrong!");
+        }
+        
     }
 
     @FXML

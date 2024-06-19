@@ -48,7 +48,7 @@ public class LoginCheck {
             Statement stm = con.createStatement();
             
             
-            String sql = "SELECT * FROM userlogin.user_table WHERE BINARY UserName='"+this.getUser()+"' and BINARY Password='"+this.getPassword()+"';";
+            String sql = "SELECT * FROM userlogin.user WHERE BINARY User_name='"+this.getUser()+"' and BINARY User_password='"+this.getPassword()+"';";
             
             //rs = resultSet
             ResultSet rs = stm.executeQuery(sql);
