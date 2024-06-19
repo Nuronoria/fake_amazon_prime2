@@ -139,8 +139,6 @@ public class SecondaryController implements Initializable {
     private JFXButton MenuButton2;
     @FXML
     private JFXButton MenuButtonItem1;
-    @FXML
-    private AnchorPane mainslide2;
 
 
     
@@ -482,6 +480,10 @@ public class SecondaryController implements Initializable {
         MenuButtonItem0.setStyle("-fx-background-color: #494949");
         MenuButtonItem1.setStyle("-fx-background-color: #494949");
         MenuButton2.setStyle("-fx-background-color: #494949");
+    }
+
+    @FXML
+    private void toAdmin(MouseEvent event) {
     }
 
 
