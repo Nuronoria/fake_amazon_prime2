@@ -4,34 +4,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="500.0" maxWidth="840.0" minHeight="500.0" minWidth="840.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.RegisterController">
+<BorderPane maxHeight="500.0" maxWidth="840.0" minHeight="500.0" minWidth="840.0" prefHeight="500.0" prefWidth="0.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.RegisterController">
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9999FF;">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;">
          <children>
             <VBox layoutX="60.0" layoutY="59.0" spacing="20.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="150.0" text="Username">
+                  <Label prefHeight="25.0" prefWidth="150.0" text="Username" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" prefWidth="150.0" text="Email">
+                  <Label prefHeight="25.0" prefWidth="150.0" text="Email" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" prefWidth="150.0" text="Password">
+                  <Label prefHeight="25.0" prefWidth="150.0" text="Password" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" prefWidth="150.0" text="Repeat Password">
+                  <Label prefHeight="25.0" prefWidth="150.0" text="Repeat Password" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -98,9 +99,9 @@
       </AnchorPane>
    </center>
    <top>
-      <AnchorPane prefHeight="104.0" prefWidth="600.0" style="-fx-background-color: #8470ff;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="104.0" prefWidth="600.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="329.0" layoutY="32.0" text="Registration">
+            <Label alignment="CENTER" layoutX="329.0" layoutY="32.0" text="Registration" textFill="#446fef">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
                </font>
@@ -111,8 +112,10 @@
    <left>
       <AnchorPane prefHeight="396.0" prefWidth="420.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="396.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="143.0" layoutY="190.0" text="ich brauche noch ein bild" />
+            <ImageView fitHeight="424.0" fitWidth="442.0" layoutX="-4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@GIF_platzhalter.gif" />
+               </image></ImageView>
          </children>
       </AnchorPane>
    </left>
