@@ -19,11 +19,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="900.0" style="-fx-background-color: black;">
                <children>
-                  <ImageView fitHeight="290.0" fitWidth="900.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@jockerbanner.jpeg" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="imagebanner" fitHeight="290.0" fitWidth="900.0" layoutY="94.0" nodeOrientation="INHERIT" pickOnBounds="true" />
                   <VBox layoutX="59.0" layoutY="914.0" prefHeight="313.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
                      <children>
                         <Label text="Comments" textFill="WHITE">
@@ -183,12 +179,12 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <ImageView fitHeight="109.0" fitWidth="234.0" layoutX="40.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagelogo" fitHeight="100.0" fitWidth="500.0" layoutX="59.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@jokerlogo.PNG" />
                      </image>
                   </ImageView>
-                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="513.0" prefHeight="255.0" prefWidth="782.0">
+                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="531.0" prefHeight="255.0" prefWidth="782.0">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -207,6 +203,21 @@
                         </JFXButton>
                      </children>
                   </VBox>
+                  <Label fx:id="genre0" layoutX="85.0" layoutY="826.0" style="-fx-background-color: #;" text="Comedy" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="genre1" layoutX="185.0" layoutY="826.0" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="genre2" layoutX="285.0" layoutY="826.0" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>

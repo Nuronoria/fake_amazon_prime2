@@ -4,11 +4,17 @@
  */
 package com.mycompany.login;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +23,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -48,6 +56,7 @@ public class TertiaryController implements Initializable {
     private Label[] comments;
     private Label[] usernames;
     private Label[] dates;
+     private Label[] genres;
 
     @FXML
     private TextArea moviedescript;
@@ -79,6 +88,16 @@ public class TertiaryController implements Initializable {
     private Label date2;
     @FXML
     private Label comment2;
+    @FXML
+    private ImageView imagebanner;
+    @FXML
+    private ImageView imagelogo;
+    @FXML
+    private Label genre0;
+    @FXML
+    private Label genre1;
+    @FXML
+    private Label genre2;
     
 
     /**
@@ -87,6 +106,8 @@ public class TertiaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Random rand = new Random();
+        int movieID = rand.nextInt(4)+1;
         
         //Liste für RandomZahl ohne Wiederholung
         List<Integer> numbers = new ArrayList<>();
@@ -98,11 +119,8 @@ public class TertiaryController implements Initializable {
         //Datenbank aufrufen und Filmbeschreibung einsetzen.
         Connection con;
         con = dbconnect.connect();
-        String description = getMovieDescription(con, 2);
-      
-
-        
-        
+        String description = getMovieDescription(con, movieID);
+     
         moviedescript.setText(description);
 
         
@@ -114,10 +132,10 @@ public class TertiaryController implements Initializable {
         
         for(int i = 0; i < 3; i++){
             int randUserId = numbers.get(i);
-            String comment = getComment(con, randUserId, 2);
-            String Username = getCommentUsername(con, randUserId, 2);
-            String Date = getCommentDate(con, randUserId, 2);
-            Double Rating = getCommentRating(con, randUserId, 2);
+            String comment = getComment(con, randUserId, movieID);
+            String Username = getCommentUsername(con, randUserId, movieID);
+            String Date = getCommentDate(con, randUserId, movieID);
+            Double Rating = getCommentRating(con, randUserId, movieID);
             ratings[i].setRating(Rating);
             comments[i].setText(comment);
             usernames[i].setText(Username);
@@ -128,8 +146,141 @@ public class TertiaryController implements Initializable {
         System.out.println(rating0.getRating());
         
         
+        //Update Image to DB
+        String filePath = "src/main/resources/com/mycompany/login/queenbanner.jpg";
+        String filePath2 = "src/main/resources/com/mycompany/login/jockerbanner.jpeg";
+        String filePath3 = "src/main/resources/com/mycompany/login/usbanner.gif";
+        String filePath4 = "src/main/resources/com/mycompany/login/moonlightbanner.jpg";
+        updateImageInDatabase(con, 1, filePath);
+        updateImageInDatabase(con, 2, filePath2);
+        updateImageInDatabase(con, 3, filePath3);
+        updateImageInDatabase(con, 4, filePath4);
+        
+        String LogofilePath = "src/main/resources/com/mycompany/login/queenlogo.png";
+        String LogofilePath2 = "src/main/resources/com/mycompany/login/jokerlogo.png";
+        String LogofilePath3 = "src/main/resources/com/mycompany/login/uslogo.jpg";
+        String LogofilePath4 = "src/main/resources/com/mycompany/login/moonlightlogo.png";
+        updateLogoInDatabase(con, 1, LogofilePath);
+        updateLogoInDatabase(con, 2, LogofilePath2);
+        updateLogoInDatabase(con, 3, LogofilePath3);
+        updateLogoInDatabase(con,4, LogofilePath4);
+           
+        
+        //Loading Image from DB
+        Image image = loadImageFromDatabase(con,movieID);
+        imagebanner.setFitWidth(900);
+        imagebanner.setFitHeight(290);
+        imagebanner.setPreserveRatio(false);
+        imagebanner.setImage(image);
+        
+        Image logo = loadLogoFromDatabase(con,movieID);
+        imagelogo.setFitHeight(100);
+        imagelogo.setImage(logo);
+    
+        //Get MovieGenre and Set to Labels
+        
+        genres = new Label[]{genre0, genre1, genre2};
+        
+        List<String> MovieGenre;
+        MovieGenre = getMovieGenre(con, movieID);
+        for(int i =0 ; i < MovieGenre.size(); i++){
+            if(i > 3){
+                break;
+            }else {
+                genres[i].setText(MovieGenre.get(i));
+            }
+            
+        }
+        
+
+        
+        
         moviedescript.setStyle("-fx-text-inner-color: #d4d4d4");
+    }
+    
+        private void updateLogoInDatabase(Connection con, int movieID, String filePath) {
+        String sql = "UPDATE userlogin.movie SET Movie_logo = ? WHERE Movie_ID = " + movieID;
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
+             FileInputStream fis = new FileInputStream(new File(filePath))) {
+
+            // Set the binary stream parameter
+            pstmt.setBinaryStream(1, fis, (int) new File(filePath).length());
+
+            // Execute the update
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("The movie_logo has been updated successfully.");
+            } else {
+                System.out.println("No row was updated.");
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
     }    
+
+    private void updateImageInDatabase(Connection con, int movieID, String filePath) {
+        String sql = "UPDATE userlogin.movie SET Movie_banner = ? WHERE Movie_ID = " + movieID;
+        try (PreparedStatement pstmt = con.prepareStatement(sql);
+             FileInputStream fis = new FileInputStream(new File(filePath))) {
+
+            // Set the binary stream parameter
+            pstmt.setBinaryStream(1, fis, (int) new File(filePath).length());
+
+            // Execute the update
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("The movie_banner has been updated successfully.");
+            } else {
+                System.out.println("No row was updated.");
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }    
+    
+        private Image loadImageFromDatabase(Connection conn, int movieID) {
+        String query = "SELECT Movie_banner FROM userlogin.movie WHERE movie_Id = " + movieID;
+        try (
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                byte[] imgBytes = rs.getBytes("Movie_banner");
+                if (imgBytes != null) {
+                    try (InputStream is = new ByteArrayInputStream(imgBytes)) {
+                        return new Image(is);
+                    }
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    private Image loadLogoFromDatabase(Connection conn, int movieID) {
+        String query = "SELECT Movie_logo FROM userlogin.movie WHERE movie_Id = " + movieID;
+        try (
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                byte[] imgBytes = rs.getBytes("Movie_logo");
+                if (imgBytes != null) {
+                    try (InputStream is = new ByteArrayInputStream(imgBytes)) {
+                        return new Image(is);
+                    }
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @FXML
     private void onBackToSecond(MouseEvent event) throws IOException {
@@ -148,6 +299,36 @@ public class TertiaryController implements Initializable {
         stage.setScene(scene);
         stage.show();
     
+    }
+    
+    private List<String> getMovieGenre(Connection con, int movieId) {
+        List<String> genres = new ArrayList<>();
+        int GenreID ;
+   
+        try {
+            Statement stm = con.createStatement();
+            String sql = "SELECT Genre_ID FROM userlogin.moviegenre WHERE Movie_ID = " + movieId;
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                GenreID = rs.getInt("Genre_ID");
+                String genresql = "SELECT Genre_name FROM userlogin.genre WHERE Genre_ID = " + GenreID;
+                try{
+                    Statement genreStmt = con.createStatement();
+                    ResultSet genreRs = genreStmt.executeQuery(genresql);
+                
+                    if (genreRs.next()){
+                        genres.add(genreRs.getString("Genre_name"));
+                
+                     }
+                } catch (Exception e){
+                    System.out.println("No Genres Found from DB.");
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("No Genre_ID Found from DB.");
+        }
+        return genres;
     }
     
     private String getMovieDescription(Connection con, int movieId) {
