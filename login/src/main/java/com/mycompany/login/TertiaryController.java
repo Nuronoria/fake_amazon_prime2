@@ -57,6 +57,7 @@ public class TertiaryController implements Initializable {
     private Label[] usernames;
     private Label[] dates;
      private Label[] genres;
+     private Label[] languages;
 
     @FXML
     private TextArea moviedescript;
@@ -98,7 +99,12 @@ public class TertiaryController implements Initializable {
     private Label genre1;
     @FXML
     private Label genre2;
-    
+    @FXML
+    private Label language0;
+    @FXML
+    private Label language1;
+    @FXML
+    private Label language2;
 
     /**
      * Initializes the controller class.
@@ -107,9 +113,10 @@ public class TertiaryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Random rand = new Random();
-        int movieID = rand.nextInt(4)+1;
+        int movieID = SessionManager.movieID;
         
         //Liste für RandomZahl ohne Wiederholung
+        //random digits 
         List<Integer> numbers = new ArrayList<>();
         for(int i=2;i<5;i++){
             numbers.add(i);
@@ -117,6 +124,7 @@ public class TertiaryController implements Initializable {
         Collections.shuffle(numbers);
         
         //Datenbank aufrufen und Filmbeschreibung einsetzen.
+        //call DB and set description
         Connection con;
         con = dbconnect.connect();
         String description = getMovieDescription(con, movieID);
@@ -125,6 +133,7 @@ public class TertiaryController implements Initializable {
 
         
         //alle ratings einsetzen
+        //set all ratings
         ratings = new Rating[]{rating0, rating1, rating2};
         comments = new Label[]{comment0, comment1, comment2};
         usernames = new Label[]{username0, username1, username2};
@@ -180,6 +189,9 @@ public class TertiaryController implements Initializable {
         //Get MovieGenre and Set to Labels
         
         genres = new Label[]{genre0, genre1, genre2};
+        genre0.setText("");
+        genre1.setText("");
+        genre2.setText("");
         
         List<String> MovieGenre;
         MovieGenre = getMovieGenre(con, movieID);
@@ -191,9 +203,22 @@ public class TertiaryController implements Initializable {
             }
             
         }
+        //get languages for subtitles and set Label
+        languages = new Label[]{language0, language1, language2};
+        language0.setText("");
+        language1.setText("");
+        language2.setText("");
         
-
-        
+        List<String> Languages;
+        Languages = getLanguages(con, movieID);
+        for(int i =0 ; i < Languages.size(); i++){
+            if(i > 3){
+                break;
+            }else {
+                languages[i].setText(Languages.get(i));
+            }
+            
+        }
         
         moviedescript.setStyle("-fx-text-inner-color: #d4d4d4");
     }
@@ -330,6 +355,38 @@ public class TertiaryController implements Initializable {
         }
         return genres;
     }
+    
+    private List<String> getLanguages(Connection con, int movieId) {
+        List<String> languages = new ArrayList<>();
+        int Language_ID ;
+   
+        try {
+            Statement stm = con.createStatement();
+            String sql = "SELECT Language_ID FROM userlogin.movielanguage WHERE Movie_ID = " + movieId;
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Language_ID = rs.getInt("Language_ID");
+                String langsql = "SELECT Language_name FROM userlogin.language WHERE Language_ID = " + Language_ID;
+                try{
+                    Statement langStmt = con.createStatement();
+                    ResultSet langRs = langStmt.executeQuery(langsql);
+                
+                    if (langRs.next()){
+                        languages.add(langRs.getString("Language_name"));
+                
+                     }
+                } catch (Exception e){
+                    System.out.println("No Languages Found from DB.");
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("No Language_ID Found from DB.");
+        }
+        return languages;
+    }
+    
+    
     
     private String getMovieDescription(Connection con, int movieId) {
         String description = "";

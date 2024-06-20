@@ -43,6 +43,7 @@ public class SecondaryController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private int movieID;
     
     @FXML
     private JFXButton MenuButton1;
@@ -433,6 +434,15 @@ public class SecondaryController implements Initializable {
     }
     @FXML
     void onClickedMovie(MouseEvent event) throws IOException {
+        
+        ImageView clickedImageView = (ImageView) event.getSource();
+        // Get the fx:id or any other property
+        String imageViewId = clickedImageView.getId();
+        String numericPart = imageViewId.replace("movie", "");
+        int conv_MovieID = Integer.parseInt(numericPart);
+        SessionManager.movieID = conv_MovieID;
+        
+        
         root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -13,14 +13,18 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="1300.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TertiaryController">
+<AnchorPane id="AnchorPane" prefHeight="1500.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TertiaryController">
    <children>
       <ScrollPane prefHeight="800.0" prefWidth="913.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="900.0" style="-fx-background-color: black;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="900.0" style="-fx-background-color: black;">
                <children>
-                  <ImageView fx:id="imagebanner" fitHeight="290.0" fitWidth="900.0" layoutY="94.0" nodeOrientation="INHERIT" pickOnBounds="true" />
-                  <VBox layoutX="59.0" layoutY="914.0" prefHeight="313.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
+                  <ImageView fx:id="imagebanner" fitHeight="290.0" fitWidth="900.0" layoutY="94.0" nodeOrientation="INHERIT" pickOnBounds="true">
+                     <image>
+                        <Image url="@jockerbanner.jpeg" />
+                     </image>
+                  </ImageView>
+                  <VBox layoutX="59.0" layoutY="1114.0" prefHeight="313.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
                      <children>
                         <Label text="Comments" textFill="WHITE">
                            <font>
@@ -184,7 +188,7 @@
                         <Image url="@jokerlogo.PNG" />
                      </image>
                   </ImageView>
-                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="531.0" prefHeight="255.0" prefWidth="782.0">
+                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="531.0" prefHeight="255.0" prefWidth="782.0" text="Joker: Folie à Deux[a] is an upcoming American musical psychological thriller film directed by Todd Phillips from a screenplay co-written with Scott Silver. The sequel to Joker (2019), loosely based on DC Comics characters, Joaquin Phoenix reprises his role as the Joker, with Lady Gaga joining the cast as his love interest, Harley Quinn. Zazie Beetz also reprises her role from the previous film, while Brendan Gleeson, and Catherine Keener also join the cast. It is produced by Warner Bros. Pictures and DC Studios in association with Joint Effort.">
                      <font>
                         <Font name="Arial Black" size="18.0" />
                      </font>
@@ -194,7 +198,7 @@
                         <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="707.0" layoutY="875.0" prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 1;">
+                  <VBox layoutX="707.0" layoutY="1075.0" prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 1;">
                      <children>
                         <JFXButton onMouseClicked="#onAddComment" styleClass="addComment" text="+ Add Comment" textFill="WHITE">
                            <font>
@@ -203,19 +207,44 @@
                         </JFXButton>
                      </children>
                   </VBox>
-                  <Label fx:id="genre0" layoutX="85.0" layoutY="826.0" style="-fx-background-color: #;" text="Comedy" textFill="#d4d4d4">
+                  <Label fx:id="genre0" layoutX="87.0" layoutY="886.0" style="-fx-background-color: #;" text="Comedy" textFill="#d4d4d4">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="genre1" layoutX="185.0" layoutY="826.0" textFill="#d4d4d4">
+                  <Label fx:id="genre1" layoutX="187.0" layoutY="886.0" text="Comedy" textFill="#d4d4d4">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="genre2" layoutX="285.0" layoutY="826.0" textFill="#d4d4d4">
+                  <Label fx:id="genre2" layoutX="287.0" layoutY="886.0" text="Comedy" textFill="#d4d4d4">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="genre01" layoutX="87.0" layoutY="839.0" style="-fx-background-color: #;" text="Genre" textFill="#d4d4d4" underline="true">
+                     <font>
+                        <Font name="Arial Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="language0" layoutX="87.0" layoutY="978.0" style="-fx-background-color: #;" text="Englisch" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="language1" layoutX="187.0" layoutY="978.0" text="Deutsch" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="language2" layoutX="287.0" layoutY="978.0" text="Spanisch" textFill="#d4d4d4">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="languageLabel" layoutX="87.0" layoutY="931.0" style="-fx-background-color: #;" text="Subtitles" textFill="#d4d4d4" underline="true">
+                     <font>
+                        <Font name="Arial Bold" size="29.0" />
                      </font>
                   </Label>
                </children>
