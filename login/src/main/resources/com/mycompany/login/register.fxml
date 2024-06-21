@@ -45,8 +45,8 @@
                   <TextField fx:id="email_text" prefHeight="25.0" prefWidth="150.0" promptText="email@domain.com" />
                   <AnchorPane>
                      <children>
-                        <PasswordField fx:id="password_text" prefHeight="25.0" prefWidth="150.0" promptText="Password" />
-                        <TextField fx:id="password_textshow" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" promptText="Password" visible="false" />
+                        <PasswordField fx:id="password_text" onKeyTyped="#passwordtextcheck" prefHeight="25.0" prefWidth="150.0" promptText="Password" />
+                        <TextField fx:id="password_textshow" focusTraversable="false" onKeyTyped="#passwordtextcheck" prefHeight="25.0" prefWidth="150.0" promptText="Password" visible="false" />
                         <Button fx:id="password_button" focusTraversable="false" layoutX="129.0" layoutY="3.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseClicked="#passwordshow" style="-fx-background-radius: 5em; -fx-padding: 0px; -fx-background-color: transparent;">
                            <graphic>
                               <Label text="👁">

@@ -493,11 +493,21 @@ public class SecondaryController implements Initializable {
     }
 
     @FXML
-    private void toAdmin(MouseEvent event) {
+    private void toAdmin(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("adminconsole.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void onRefresh(MouseEvent event) {
+    private void onRefresh(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

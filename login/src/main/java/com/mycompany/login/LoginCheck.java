@@ -13,6 +13,7 @@ public class LoginCheck {
     
     private String user;
     private String password;
+    private Connection con;
     
     
     public LoginCheck(String u,String p){
@@ -40,7 +41,6 @@ public class LoginCheck {
     }
     */
     public boolean userCompare(){
-        Connection con;
         try{
             
             //con = connection
@@ -58,11 +58,14 @@ public class LoginCheck {
             
             if(rs.next()){
                 System.out.println("right userlogin");
+                con.close();
                 return(true);
             }else{
                 System.out.println("false userlogin");
+                con.close();
                 return(false);
             }
+            
             
         }catch (Exception e){
             System.out.println(e);
@@ -71,35 +74,26 @@ public class LoginCheck {
         return(false);
     }
     
-    //war eine funktion die dazu da war die ganze tabelle aus zu geben
-    private static void testverbindung(){
-        Connection con;
-        //System.out.println("ich war in der methode");
-        try{
-            //Class.forName("com.mysql.cj.jdbc.driver");
-            //System.out.println("ich war in der try");
-            
-            //con = connection
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","asd123");
-            
-            //System.out.println(con);
-            
-            //stm = Statement
-            Statement stm = con.createStatement();
-            
-            
-            String sql = "SELECT * FROM userlogin.user_table;";
-            
-            //rs = resultSet
-            ResultSet rs = stm.executeQuery(sql);
-            
-            while(rs.next()){
-                System.out.println(rs.getInt("UserID")+" "+rs.getString("UserName")+" "+rs.getString("Password"));
+    public int getUserID(String User_name) throws SQLException {
+        con = dbconnect.connect();
+        
+        int UserID = 0;
+         String sql = "SELECT User_ID FROM userlogin.user WHERE User_name = ?";
+
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+        // Set the value for the parameter
+              pstmt.setString(1, User_name);
+        
+        // Execute the query
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                UserID = rs.getInt("User_ID");
             }
-            
-        }catch (Exception e){
-            System.out.println(e);
-            System.out.println("ich war in der chatch");
         }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        con.close();
+        return UserID;
     }
 }

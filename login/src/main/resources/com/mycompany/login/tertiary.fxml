@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="1500.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TertiaryController">
+<AnchorPane id="AnchorPane" prefHeight="796.0" prefWidth="913.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TertiaryController">
    <children>
-      <ScrollPane prefHeight="800.0" prefWidth="913.0">
+      <ScrollPane prefHeight="800.0" prefWidth="915.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="900.0" style="-fx-background-color: black;">
                <children>

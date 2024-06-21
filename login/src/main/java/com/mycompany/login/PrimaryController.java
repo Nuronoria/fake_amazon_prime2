@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,7 +36,6 @@ public class PrimaryController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private int userID;
 
     @FXML
     private TextField inputUserID;
@@ -48,9 +48,6 @@ public class PrimaryController implements Initializable {
     @FXML
     private TextField pass_text;
     
-    public void setUserID(int userID){
-        this.userID = userID;
-    }
 
     /**
      * Initializes the controller class.
@@ -61,7 +58,7 @@ public class PrimaryController implements Initializable {
     }    
 
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
+    private void handleButtonAction(ActionEvent event) throws IOException, SQLException {
         String username = inputUserID.getText();
         String password;
         if(pass_toggle.isSelected()){
@@ -72,12 +69,9 @@ public class PrimaryController implements Initializable {
         LoginCheck a = new LoginCheck(username,password);
         if(a.userCompare()){
             System.out.println("Login success.");
-            Connection con;
-            con = dbconnect.connect();
-            setUserID(getUserID(con, username));
-            SessionManager.userID = this.userID;
-            System.out.println(this.userID);
-             System.out.println(SessionManager.userID);
+            
+            SessionManager.userID = a.getUserID(username);
+            System.out.println(SessionManager.userID);
 
 
             root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -132,25 +126,14 @@ public class PrimaryController implements Initializable {
             pass_hidden.positionCaret(pass_hidden.getText().length());
         }
     }
-    //getUserID from DB
-    private int getUserID(Connection con, String User_name) {
-        int UserID = 0;
-         String sql = "SELECT User_ID FROM userlogin.user WHERE User_name = ?";
 
-         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-        // Set the value for the parameter
-              pstmt.setString(1, User_name);
-        
-        // Execute the query
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                UserID = rs.getInt("User_ID");
-            }
-        }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return UserID;
+    @FXML
+    private void testseite(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("adminconsole.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
 }
