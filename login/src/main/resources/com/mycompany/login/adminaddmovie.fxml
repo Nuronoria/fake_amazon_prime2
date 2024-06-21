@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.AdminaddmovieController">
+   <children>
+      <AnchorPane prefHeight="54.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="10.0" prefHeight="17.0" prefWidth="385.0" text="ADD FILM" textFill="#446fef">
+               <font>
+                  <Font name="Calibri Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="site" alignment="CENTER" contentDisplay="CENTER" layoutX="493.0" layoutY="10.0" prefHeight="41.0" prefWidth="57.0" text="(1/4)" textFill="#446fef">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="errortext" layoutX="75.0" layoutY="330.0" prefHeight="45.0" prefWidth="224.0" textFill="RED">
+                     <font>
+                        <Font name="Calibri Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="movietitlefield" layoutX="226.0" layoutY="33.0" prefHeight="25.0" prefWidth="193.0" />
+                  <TextArea fx:id="descriptionfield" layoutX="76.0" layoutY="143.0" onKeyTyped="#charcounter" prefHeight="146.0" prefWidth="448.0" />
+                  <Label layoutX="76.0" layoutY="34.0" prefHeight="22.0" prefWidth="115.0" text="Movie Title : " textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="76.0" layoutY="121.0" prefHeight="22.0" prefWidth="186.0" text="Movie Description : " textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="338.0" layoutY="121.0" prefHeight="22.0" prefWidth="186.0" text="(Max 600char)" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Next" />
+                  <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label layoutX="76.0" layoutY="77.0" prefHeight="22.0" prefWidth="115.0" text="Release date :" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="releasedatefield" layoutX="226.0" layoutY="76.0" prefHeight="25.0" prefWidth="193.0" />
+                  <Label fx:id="counter" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="443.0" layoutY="289.0" prefHeight="22.0" prefWidth="81.0" textFill="#979797">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="pane2" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="40.0" layoutY="15.0" prefHeight="22.0" prefWidth="218.0" text="Add Movie Picture :" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <StackPane layoutX="27.0" layoutY="45.0" prefHeight="250.0" prefWidth="550.0">
+                     <children>
+                        <AnchorPane fx:id="imagefield2" maxHeight="250.0" maxWidth="550.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fx:id="image2" fitHeight="250.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dragfield2" prefHeight="208.0" prefWidth="439.0" style="-fx-background-color: #ffffff; -fx-border-style: dashed; -fx-border-color: #446fef; -fx-border-width: 4px;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="90.0" prefHeight="14.0" prefWidth="256.0" text="Drag&amp;Drop files here">
+                                 <font>
+                                    <Font name="Calibri" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="45.0" fitWidth="57.0" layoutX="253.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@cloud-computing_165580.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="211.0" prefHeight="14.0" prefWidth="256.0" text="Image files (*.jpg;*.jpeg;*.png;*.gif)">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="148.0" layoutY="128.0" prefHeight="14.0" prefWidth="256.0" text="or">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Region onDragDropped="#imagedropped" onDragEntered="#dragenterregion" onDragExited="#dragexitregion" onDragOver="#imagedroppedcheck" opacity="0.7" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+                  <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Next" />
+                  <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#backbutton" prefHeight="41.0" prefWidth="81.0" text="Back" />
+                  <Button layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label fx:id="moviepicturename" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="pane3" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="40.0" layoutY="15.0" prefHeight="22.0" prefWidth="218.0" text="Add Movie Banner :" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Next" />
+                  <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#backbutton" prefHeight="41.0" prefWidth="81.0" text="Back" />
+                  <Button layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label fx:id="moviepicturename1" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
+                  <StackPane layoutX="27.0" layoutY="45.0" prefHeight="250.0" prefWidth="550.0">
+                     <children>
+                        <AnchorPane fx:id="imagefield3" maxHeight="250.0" maxWidth="550.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fx:id="image3" fitHeight="250.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dragfield3" prefHeight="208.0" prefWidth="439.0" style="-fx-background-color: #ffffff; -fx-border-style: dashed; -fx-border-color: #446fef; -fx-border-width: 4px;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="90.0" prefHeight="14.0" prefWidth="256.0" text="Drag&amp;Drop files here">
+                                 <font>
+                                    <Font name="Calibri" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="45.0" fitWidth="57.0" layoutX="253.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@cloud-computing_165580.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="211.0" prefHeight="14.0" prefWidth="256.0" text="Image files (*.jpg;*.jpeg;*.png;*.gif)">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="148.0" layoutY="128.0" prefHeight="14.0" prefWidth="256.0" text="or">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Region onDragDropped="#imagedropped" onDragEntered="#dragenterregion" onDragExited="#dragexitregion" onDragOver="#imagedroppedcheck" opacity="0.7" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="pane4" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Finish" />
+                  <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#backbutton" prefHeight="41.0" prefWidth="81.0" text="Back" />
+                  <Button layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label layoutX="40.0" layoutY="15.0" prefHeight="22.0" prefWidth="218.0" text="Add Movie Logo :" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moviepicturename11" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
+                  <StackPane layoutX="27.0" layoutY="45.0" prefHeight="250.0" prefWidth="550.0">
+                     <children>
+                        <AnchorPane fx:id="imagefield4" maxHeight="250.0" maxWidth="550.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fx:id="image4" fitHeight="250.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="dragfield4" prefHeight="208.0" prefWidth="439.0" style="-fx-background-color: #ffffff; -fx-border-style: dashed; -fx-border-color: #446fef; -fx-border-width: 4px;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="90.0" prefHeight="14.0" prefWidth="256.0" text="Drag&amp;Drop files here">
+                                 <font>
+                                    <Font name="Calibri" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="45.0" fitWidth="57.0" layoutX="253.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@cloud-computing_165580.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" layoutX="147.0" layoutY="211.0" prefHeight="14.0" prefWidth="256.0" text="Image files (*.jpg;*.jpeg;*.png;*.gif)">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="148.0" layoutY="128.0" prefHeight="14.0" prefWidth="256.0" text="or">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Region onDragDropped="#imagedropped" onDragEntered="#dragenterregion" onDragExited="#dragexitregion" onDragOver="#imagedroppedcheck" opacity="0.7" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</VBox>
