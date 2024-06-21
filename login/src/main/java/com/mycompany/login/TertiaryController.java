@@ -138,9 +138,14 @@ public class TertiaryController implements Initializable {
         comments = new Label[]{comment0, comment1, comment2};
         usernames = new Label[]{username0, username1, username2};
         dates = new Label[]{date0, date1, date2};
+        //get all UserIDs from comments
+        List<Integer> CommentUserID;
+        CommentUserID = getCommentUserID(con, movieID);
+        //shuffle to get random UserIDs
+        Collections.shuffle(CommentUserID);
         
         for(int i = 0; i < 3; i++){
-            int randUserId = numbers.get(i);
+            int randUserId = CommentUserID.get(i);
             String comment = getComment(con, randUserId, movieID);
             String Username = getCommentUsername(con, randUserId, movieID);
             String Date = getCommentDate(con, randUserId, movieID);
@@ -150,10 +155,7 @@ public class TertiaryController implements Initializable {
             usernames[i].setText(Username);
             dates[i].setText(Date);
         }
-        
-        
-        System.out.println(rating0.getRating());
-        
+
         
         //Update Image to DB
         String filePath = "src/main/resources/com/mycompany/login/queenbanner.jpg";
@@ -401,6 +403,24 @@ public class TertiaryController implements Initializable {
             System.out.println(e);
         }
         return description;
+    }
+    private List<Integer> getCommentUserID (Connection con, int movieId){
+        List<Integer> userIDs = new ArrayList<>();
+        
+                try {
+            Statement stm = con.createStatement();
+            String sql = "SELECT User_ID FROM userlogin.comment WHERE Movie_ID = " + movieId;
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                int userID = rs.getInt("User_ID");
+                userIDs.add(userID);
+
+            }
+        } catch (Exception e) {
+            System.out.println("No UserID Found from DB.");
+        }
+        
+        return userIDs;
     }
     
     private String getComment(Connection con, int userId, int movieId) {
