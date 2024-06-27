@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,12 +47,20 @@ public class AdmindeletemovieController implements Initializable {
     @FXML
     private TextField searchtext;
     private Connection con;
+    @FXML
+    private Label errortext;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TableColumn<Movie, Integer> idCol = new TableColumn<>("Movie_ID");
+        idCol.setCellValueFactory(cellData -> Bindings.createObjectBinding(
+            () -> cellData.getValue().idProperty().get(),
+            cellData.getValue().idProperty()
+        ));
+        
         TableColumn<Movie, String> titleCol = new TableColumn<>("Movie_Title");
         titleCol.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
 
@@ -116,7 +126,7 @@ public class AdmindeletemovieController implements Initializable {
         
         
         
-        table.getColumns().addAll(titleCol, descriptionCol, pictureCol, bannerCol, releaseCol, logoCol);
+        table.getColumns().addAll(idCol,titleCol, descriptionCol, pictureCol, bannerCol, releaseCol, logoCol);
         table.setItems(data);
         
 
@@ -131,12 +141,14 @@ public class AdmindeletemovieController implements Initializable {
         Statement stm = con.createStatement();
 
 
-        String sql = "SELECT Movie_title,Movie_description,Movie_picture,Movie_banner,Movie_release,Movie_logo FROM userlogin.movie where Movie_title Like'%"+searchtext.getText()+"%';";
+        String sql = "SELECT Movie_ID,Movie_title,Movie_description,Movie_picture,Movie_banner,Movie_release,Movie_logo FROM userlogin.movie where Movie_title Like'%"+searchtext.getText()+"%';";
 
         //rs = resultSet
         ResultSet rs = stm.executeQuery(sql);
         
         while (rs.next()) {
+            int id = rs.getInt("Movie_ID");
+            
             String title = rs.getString("Movie_title");
             
             String description = rs.getString("Movie_description");
@@ -152,7 +164,7 @@ public class AdmindeletemovieController implements Initializable {
             byte[] imageBytes3 = rs.getBytes("Movie_logo");
             Image logo = (imageBytes3 != null) ? new Image(new ByteArrayInputStream(imageBytes3)) : null;
             
-            data.add(new Movie(title, description, picture, banner, release, logo));
+            data.add(new Movie(id, title, description, picture, banner, release, logo));
         }
 
     }
@@ -165,4 +177,32 @@ public class AdmindeletemovieController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void deleteSelectedPerson(ActionEvent event) {
+        Movie selectedPerson = table.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            data.remove(selectedPerson); // Aus ObservableList entfernen
+            deletePersonFromDatabase(selectedPerson); // Aus der Datenbank entfernen
+        } else {
+            errortext.setText("no Movie selected!");
+        }
+    }
+    
+    private void deletePersonFromDatabase(Movie movie) {
+    // Hier müsstest du deine Logik zur Verbindung und zum Löschen aus der Datenbank einfügen
+    try (Connection conn = dbconnect.connect();
+         Statement stmt = conn.createStatement()) {
+        String query = "DELETE FROM userlogin.movie WHERE Movie_ID = " + movie.getId();
+        int rowsAffected = stmt.executeUpdate(query);
+        if (rowsAffected > 0) {
+            errortext.setText("Movie deleted!");
+        } else {
+            errortext.setText("cant delete movie! :(");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    
 }

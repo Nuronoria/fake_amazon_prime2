@@ -4,6 +4,8 @@
  */
 package com.mycompany.login;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -20,14 +22,16 @@ public class Movie {
     private final SimpleObjectProperty<Image> picture;
     private final SimpleObjectProperty<Image> banner;
     private final SimpleObjectProperty<Image> logo;
+    private final IntegerProperty id;
 
-    public Movie(String title,String description,Image picture,Image banner,String release,Image logo) {
+    public Movie(int id,String title,String description,Image picture,Image banner,String release,Image logo) {
         this.title = new SimpleStringProperty(title);
         this.description = new SimpleStringProperty(description);
         this.release = new  SimpleStringProperty(release);
         this.picture = new SimpleObjectProperty(picture);
         this.banner = new SimpleObjectProperty(banner);
         this.logo = new SimpleObjectProperty(logo);
+        this.id = new SimpleIntegerProperty(id);
     }
     
      public String getTitle() {
@@ -48,6 +52,9 @@ public class Movie {
     public Image getLogo(){
         return this.logo.get();
     }
+    public int getId() {
+        return this.id.get();
+    }
     
     public void setTitle(String title){
         this.title.set(title);
@@ -67,6 +74,9 @@ public class Movie {
     public void setLogo(Image logo){
         this.logo.set(logo);
     }
+    public void setId(int id) {
+        this.id.set(id);
+    }
     
     public StringProperty titleProperty() {
         return title;
@@ -85,5 +95,8 @@ public class Movie {
     }
     public SimpleObjectProperty<Image> logoProperty(){
         return logo;
+    }
+    public IntegerProperty idProperty() {
+        return id;
     }
 }
