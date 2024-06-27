@@ -138,8 +138,14 @@ public class SecondaryController implements Initializable {
     private JFXButton MenuButtonItem0;
     @FXML
     private JFXButton MenuButton2;
+        @FXML
+    private JFXButton MenuButton21;
     @FXML
     private JFXButton MenuButtonItem1;
+        @FXML
+    private JFXButton MenuButtonItem11;
+            @FXML
+    private JFXButton MenuButtonItem01;
 
 
     
@@ -164,7 +170,9 @@ public class SecondaryController implements Initializable {
         
         MenuButton1.setOpacity(0);
         MenuButtonItem0.setOpacity(0);
+        MenuButtonItem01.setOpacity(0);
         MenuButtonItem1.setOpacity(0);
+        MenuButtonItem11.setOpacity(0);
 
    
         
@@ -481,6 +489,15 @@ public class SecondaryController implements Initializable {
         MenuButtonItem1.setStyle("-fx-background-color: transparent");
         MenuButton2.setStyle("-fx-background-color: transparent");
     }
+        @FXML
+    private void outMenuButton21(MouseEvent event) {
+        MenuButton21.setOpacity(0.7);
+        MenuButtonItem01.setOpacity(0);
+        MenuButtonItem11.setOpacity(0);
+        MenuButtonItem01.setStyle("-fx-background-color: transparent");
+        MenuButtonItem11.setStyle("-fx-background-color: transparent");
+        MenuButton21.setStyle("-fx-background-color: transparent");
+    }
 
     @FXML
     private void onMenuButton2(MouseEvent event) {
@@ -491,6 +508,17 @@ public class SecondaryController implements Initializable {
         MenuButtonItem1.setStyle("-fx-background-color: #494949");
         MenuButton2.setStyle("-fx-background-color: #494949");
     }
+    
+        @FXML
+    private void onMenuButton21(MouseEvent event) {
+        MenuButtonItem01.setOpacity(1);
+        MenuButtonItem11.setOpacity(1);
+        MenuButton21.setOpacity(1);
+        MenuButtonItem01.setStyle("-fx-background-color: #494949");
+        MenuButtonItem11.setStyle("-fx-background-color: #494949");
+        MenuButton21.setStyle("-fx-background-color: #494949");
+    }
+
 
     @FXML
     private void toAdmin(MouseEvent event) throws IOException {
