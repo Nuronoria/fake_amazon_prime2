@@ -410,7 +410,7 @@
             <Image url="@refresh.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="MenuButtonItem01" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="109.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" styleClass="buttonStyle" text="Comedy" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem01" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="109.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Comedy" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -423,7 +423,7 @@
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <JFXButton fx:id="MenuButtonItem11" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="159.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" styleClass="buttonStyle" text="Horror" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem11" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="159.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Horror" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>

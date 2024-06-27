@@ -196,13 +196,7 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-
-//        MenuButton1.setOpacity(0);
-//        MenuButtonItem0.setOpacity(0);
-//        MenuButtonItem01.setOpacity(0);
-//        MenuButtonItem1.setOpacity(0);
-//        MenuButtonItem11.setOpacity(0);
+       
 
 
         
