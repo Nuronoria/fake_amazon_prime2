@@ -1,15 +1,7 @@
 FROM mysql:8.0
 
-# Set a default value for the secrets file path
-ENV SECRETS_FILE_PATH login/src/main/resources/secrets.properties
-
-# Copy the secrets.properties file into the container
-COPY secrets.properties ${SECRETS_FILE_PATH}
-
-
+# Copy MySQL configuration and initialization files
 COPY my.cnf /etc/mysql/my.cnf
-
-
 COPY init.sql /docker-entrypoint-initdb.d/
 COPY userlogin_comment.sql /docker-entrypoint-initdb.d/
 COPY userlogin_genre.sql /docker-entrypoint-initdb.d/
@@ -18,11 +10,6 @@ COPY userlogin_movie.sql /docker-entrypoint-initdb.d/
 COPY userlogin_moviegenre.sql /docker-entrypoint-initdb.d/
 COPY userlogin_movielanguage.sql /docker-entrypoint-initdb.d/
 COPY userlogin_user.sql /docker-entrypoint-initdb.d/
-
-# Add entrypoint script to load environment variables from the secrets file
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Expose the MySQL port
 EXPOSE 3308

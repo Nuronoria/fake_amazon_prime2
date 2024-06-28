@@ -62,3 +62,9 @@ mvn javafx:run
 
 ## 3. Incrypting Login infos in Database:
 
+
+
+# What does the User need to do:
+- The user need to set there own user and password for the databases
+	there is still the possibility of using enviremental variable using the *Windows* set command or the *Unix* export command
+	maybe add it to the setup scripts
