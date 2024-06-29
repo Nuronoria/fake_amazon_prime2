@@ -143,7 +143,6 @@ public class TertiaryController implements Initializable {
         CommentUserID = getCommentUserID(con, movieID);
         //shuffle to get random UserIDs
         Collections.shuffle(CommentUserID);
-        System.out.println(CommentUserID);
         
         for(int i = 0; i < 3; i++){
             int randUserId = CommentUserID.get(i);

@@ -20,24 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import com.jfoenix.controls.JFXTextArea;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -45,7 +29,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -61,7 +44,6 @@ public class SecondaryController implements Initializable {
     private Scene scene;
     private Parent root;
     private int movieID;
-    private Connection con;
     
     @FXML
     private JFXButton MenuButton1;
@@ -156,49 +138,35 @@ public class SecondaryController implements Initializable {
     private JFXButton MenuButtonItem0;
     @FXML
     private JFXButton MenuButton2;
-        @FXML
-    private JFXButton MenuButton21;
     @FXML
     private JFXButton MenuButtonItem1;
 
-        @FXML
-    private JFXButton MenuButtonItem11;
-            @FXML
-    private JFXButton MenuButtonItem01;
 
-    @FXML
-    private JFXButton adminbutton;
-    @FXML
-    private Label title1;
-    @FXML
-    private Label title2;
-    @FXML
-    private Label title3;
-    @FXML
-    private Label title4;
-    @FXML
-    private Label title5;
-    @FXML
-    private Label title6;
-    @FXML
-    private Label title7;
-    @FXML
-    private Label title8;
+    
 
-
-    private ObservableList<Integer> idList = FXCollections.observableArrayList();
-    private ObservableList<JFXTextArea> descriptionList = FXCollections.observableArrayList(moviedescrip1,moviedescrip2,moviedescrip3,moviedescrip4,moviedescrip5,moviedescrip6,moviedescrip7,moviedescrip8);
-    private ObservableList<ImageView> pictureList = FXCollections.observableArrayList(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8);
-    private ObservableList<Label> titleList = FXCollections.observableArrayList(title1,title2,title3,title4,title5,title6,title7,title8);
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       
+        moviedescrip1.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip2.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip3.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip4.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip5.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip6.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip7.setStyle("-fx-text-inner-color: #d4d4d4");
+        moviedescrip8.setStyle("-fx-text-inner-color: #d4d4d4");
+        
+        
+        nextSlideButton.setOpacity(0);
+        
+        MenuButton1.setOpacity(0);
+        MenuButtonItem0.setOpacity(0);
+        MenuButtonItem1.setOpacity(0);
 
-
+   
         
         ScaleTransition scaleIn = new ScaleTransition(Duration.seconds(0.5), movie1);
         scaleIn.setToX(1.2);
@@ -326,7 +294,7 @@ public class SecondaryController implements Initializable {
         FadeTransition fadeOutButton = new FadeTransition(Duration.seconds(0.2), nextSlideButton);
         fadeOutButton.setToValue(0);
         
-        FadeTransition fadeInButton1 = new FadeTransition(Duration.seconds(0.2), nextSlideButton1);
+                FadeTransition fadeInButton1 = new FadeTransition(Duration.seconds(0.2), nextSlideButton1);
         fadeInButton1.setToValue(0.3);
 
         FadeTransition fadeOutButton1 = new FadeTransition(Duration.seconds(0.2), nextSlideButton1);
@@ -437,20 +405,6 @@ public class SecondaryController implements Initializable {
                 fadeOutButton.play(); 
             
         });
-        if (SessionManager.admin == true) {
-            adminbutton.setVisible(true);
-        }else{
-            adminbutton.setVisible(false);
-        }
-        
-            
-            
-
-            try {
-                fillMovies();
-            } catch (SQLException ex) {
-                System.out.println("fillMovies failed");
-            }
         
      
     }
@@ -527,17 +481,7 @@ public class SecondaryController implements Initializable {
         MenuButtonItem1.setStyle("-fx-background-color: transparent");
         MenuButton2.setStyle("-fx-background-color: transparent");
     }
-        @FXML
-    private void outMenuButton21(MouseEvent event) {
-        MenuButton21.setOpacity(0.7);
-        MenuButtonItem01.setOpacity(0);
-        MenuButtonItem11.setOpacity(0);
-        MenuButtonItem01.setStyle("-fx-background-color: transparent");
-        MenuButtonItem11.setStyle("-fx-background-color: transparent");
-        MenuButton21.setStyle("-fx-background-color: transparent");
-    }
 
-    //@author jrwie
     @FXML
     private void onMenuButton2(MouseEvent event) {
         MenuButtonItem0.setOpacity(1);
@@ -547,29 +491,16 @@ public class SecondaryController implements Initializable {
         MenuButtonItem1.setStyle("-fx-background-color: #494949");
         MenuButton2.setStyle("-fx-background-color: #494949");
     }
-    
-        @FXML
-    private void onMenuButton21(MouseEvent event) {
-        MenuButtonItem01.setOpacity(1);
-        MenuButtonItem11.setOpacity(1);
-        MenuButton21.setOpacity(1);
-        MenuButtonItem01.setStyle("-fx-background-color: #494949");
-        MenuButtonItem11.setStyle("-fx-background-color: #494949");
-        MenuButton21.setStyle("-fx-background-color: #494949");
-    }
 
-
-    //@author jrwie
     @FXML
     private void toAdmin(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+        root = FXMLLoader.load(getClass().getResource("adminconsole.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    //@author jrwie
     @FXML
     private void onRefresh(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -579,108 +510,6 @@ public class SecondaryController implements Initializable {
         stage.show();
     }
 
-    //@author jrwie
-    @FXML
-    private void offAdminbutton(MouseEvent event) {
-        adminbutton.setStyle("-fx-background-color: transparent");
-    }
-
-    //@author jrwie
-    @FXML
-    private void onAdminbutton(MouseEvent event) {
-        adminbutton.setStyle("-fx-background-color: #494949");
-    }
-
-    //@author jrwie
-    @FXML
-    private void fillMovies() throws SQLException{
-        
-        ObservableList<Integer> idList = FXCollections.observableArrayList();
-        ObservableList<JFXTextArea> descriptionList = FXCollections.observableArrayList(moviedescrip1,moviedescrip2,moviedescrip3,moviedescrip4,moviedescrip5,moviedescrip6,moviedescrip7,moviedescrip8);
-        ObservableList<ImageView> pictureList = FXCollections.observableArrayList(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8);
-        ObservableList<Label> titleList = FXCollections.observableArrayList(title1,title2,title3,title4,title5,title6,title7,title8);
-        
-        int zahl =0;
-        if (titleList.get(zahl) == null) {
-            return;
-        }
-                
-        con = dbconnect.connect();
-        Statement stm = con.createStatement();
 
 
-        String sql = "SELECT Movie_ID,Movie_title,Movie_description,Movie_picture FROM userlogin.movie";
-
-        //rs = resultSet
-        ResultSet rs = stm.executeQuery(sql);
-        
-        
-            
-            try {
-                // Liste für gemischte Zeilen
-                List<Map<String, Object>> rows = new ArrayList<>();
-                // Ergebnisse in Liste von Maps speichern
-                while (rs.next()) {
-                    Map<String, Object> row = new HashMap<>();
-                    ResultSetMetaData metaData = rs.getMetaData();
-                    int columnCount = metaData.getColumnCount();
-                    for (int i = 1; i <= columnCount; i++) {
-                        row.put(metaData.getColumnName(i), rs.getObject(i));
-                    }
-                    rows.add(row);
-                }
-            
-                // Liste mischen
-                Collections.shuffle(rows);
-                
-                for (Map<String, Object> row : rows) {
-                    // Annahme: Du möchtest den Wert der Spalte "columnName" in einer Variable speichern
-                    int id = (int)row.get("Movie_ID");
-                    String title  = (String)row.get("Movie_title");
-                    String description = (String)row.get("Movie_description");
-                    byte[] imageBytes = (byte[])row.get("Movie_picture");
-
-                    Image picture = (imageBytes != null) ? new Image(new ByteArrayInputStream(imageBytes)) : null;
-
-                    idList.add(id);
-                    titleList.get(zahl).setText(title);
-                    descriptionList.get(zahl).setText(description);
-                    pictureList.get(zahl).setImage(picture);
-
-                    zahl++;
-                    if (zahl == 8) {
-                        break;
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            
-            
-            
-//        //der code wurde benutzt als die filme noch nihct geshuffelt wurden
-//        while (rs.next()) {
-//            
-//            int id = rs.getInt("Movie_ID");
-//            
-//            String title = rs.getString("Movie_title");
-//            
-//            String description = rs.getString("Movie_description");
-//            
-//            byte[] imageBytes = rs.getBytes("Movie_picture");
-//            Image picture = (imageBytes != null) ? new Image(new ByteArrayInputStream(imageBytes)) : null;
-//            
-//            idList.add(id);
-//            titleList.get(zahl).setText(title);
-//            descriptionList.get(zahl).setText(description);
-//            pictureList.get(zahl).setImage(picture);
-//            
-//            zahl++;
-//            if (zahl == 8) {
-//                break;
-//            }
-//        }
-
-    }
-    
 }

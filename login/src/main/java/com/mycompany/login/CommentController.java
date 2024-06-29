@@ -7,9 +7,7 @@ package com.mycompany.login;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,7 +67,9 @@ public class CommentController implements Initializable {
         String comment = commentContent.getText();
         // add " at the start and end of the comment
         comment = "\"" + comment + "\"";
-
+        
+        System.out.println(rating);
+        System.out.println(comment);
         
         if ( rating == 0 || comment.equals("")){
             
@@ -89,9 +89,10 @@ public class CommentController implements Initializable {
             int userID = SessionManager.userID;
             int movieID = SessionManager.movieID;
             
- 
-            if((sendComment(con, userID, movieID, comment, rating, formattedDate)) == true){
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            sendComment(con, userID, movieID, comment, rating, formattedDate);
+            
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thank You");
             alert.setHeaderText(null);
             alert.setContentText("Thank you for your comment! :)");
@@ -103,80 +104,32 @@ public class CommentController implements Initializable {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-                
-            }else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("It seems like you have already rated this movie :(");
-
-            alert.showAndWait();
-
-            root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            }
-            
-            
-
         }
         
 
     }
-        private Boolean sendComment(Connection con, int userId, int movieId, String comment, double rating, String date) {
+        private void sendComment(Connection con, int userId, int movieId, String comment, double rating, String date) {
      
         try {
-
             Statement stm = con.createStatement();
-            
-              String sqldoub = "SELECT CASE " +
-             "WHEN EXISTS (SELECT 1 FROM userlogin.comment WHERE User_ID = ? AND Movie_ID = ?) " +
-             "THEN true ELSE false END AS result";
-              Boolean CommentEntry = true;
-            try(PreparedStatement pstmt = con.prepareStatement(sqldoub);){
-                pstmt.setInt(1, userId);
-                pstmt.setInt(2, movieId);
-                ResultSet rs = pstmt.executeQuery();
-                if(rs.next()){
-                    CommentEntry = rs.getBoolean("result");
-                }
-               
-              
-                
-            } catch (SQLException e){
-                System.out.println(e);
-            }
-            
-              
-            if (CommentEntry == false){
             String sql = "INSERT INTO userlogin.comment (User_ID, Movie_ID, Comment_text, Comment_rating, Comment_date) VALUES (" 
-                + userId + ", " 
-                + movieId + ", '"
-                + comment + "', " 
-                + rating + ", '"
-                + date + "')";
-            int rowsAffected = stm.executeUpdate(sql);
+                    + userId + ", " 
+                    + movieId + ", '"
+                    + comment + "', " 
+                    + rating + ", '"
+                    + date + "')";
+        int rowsAffected = stm.executeUpdate(sql);
 
-            if (rowsAffected > 0) {
-              System.out.println("Comment added successfully.");
-             } else {
-                System.out.println("Failed to add comment.");
-             }
-            return true;
-            
-            }else{
-                return false;
-                
-            }
-              
-
+        if (rowsAffected > 0) {
+            System.out.println("Comment added successfully.");
+        } else {
+            System.out.println("Failed to add comment.");
+        }
 
         } catch (Exception e) {
             System.out.println(e);
         }
-        return false;
+        
     }
     
 }
