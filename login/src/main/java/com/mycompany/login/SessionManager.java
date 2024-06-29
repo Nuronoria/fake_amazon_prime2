@@ -9,8 +9,8 @@ package com.mycompany.login;
  * @author kjh27
  */
 public class SessionManager {
-    public static int userID;
-    public static int movieID;
+    public static int userID = 0;
+    public static int movieID = 0;
     public static boolean admin = true;
     
 }

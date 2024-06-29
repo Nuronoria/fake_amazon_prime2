@@ -21,6 +21,7 @@ import com.jfoenix.controls.JFXTextArea;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -187,7 +188,7 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       
+        setUsername();
 
         if (SessionManager.admin) {
             adminbutton.setVisible(true);
@@ -500,11 +501,11 @@ public class SecondaryController implements Initializable {
     }
         System.out.println(SessionManager.movieID);
         
-//        root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+        root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -661,6 +662,26 @@ public class SecondaryController implements Initializable {
                 e.printStackTrace();
             }
             
+    }
+    
+    private void setUsername(){
+        
+        if(SessionManager.userID == 0){
+        MenuButton0.setText("");
+        }else{
+            String sql = "SELECT User_name FROM userlogin.user WHERE User_ID = ?;";
+            try (Connection con = dbconnect.connect();PreparedStatement pstmt = con.prepareStatement(sql)){
+                pstmt.setInt(1, SessionManager.userID);
+                ResultSet rs = pstmt.executeQuery();
+                rs.next();
+                MenuButton0.setText(rs.getString("User_name"));
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        
+    }
             
             
 //        //der code wurde benutzt als die filme noch nihct geshuffelt wurden
@@ -686,6 +707,5 @@ public class SecondaryController implements Initializable {
 //            }
 //        }
 
-    }
     
 }
