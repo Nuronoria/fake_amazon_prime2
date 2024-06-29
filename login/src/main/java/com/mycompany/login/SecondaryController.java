@@ -5,7 +5,6 @@
 package com.mycompany.login;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
 import javafx.util.Duration;
 import java.util.ResourceBundle;
@@ -18,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,13 +26,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,9 +37,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -65,54 +57,39 @@ public class SecondaryController implements Initializable {
     
     @FXML
     private JFXButton MenuButton1;
-    
-        @FXML
+    @FXML
     private JFXButton MenuButton0;
-
     @FXML
     private ImageView movie1;
-    
     @FXML
     private Pane movieanch1;
-    
     @FXML
     private Pane slider1;
-    
     @FXML
     private ImageView movie2;
-    
     @FXML
     private Pane movieanch2;
-    
     @FXML
     private Pane slider2;
-    
-        @FXML
+    @FXML
     private ImageView movie3;
-    
     @FXML
     private Pane movieanch3;
-    
     @FXML
     private Pane slider3;
-    
-            @FXML
+    @FXML
     private ImageView movie4;
-    
     @FXML
     private Pane movieanch4;
-    
     @FXML
     private Pane slider4;
-    
     @FXML
     private JFXTextArea moviedescrip1;
-    
     @FXML
     private JFXTextArea moviedescrip2;
-        @FXML
+    @FXML
     private JFXTextArea moviedescrip3;
-                @FXML
+    @FXML
     private JFXTextArea moviedescrip4;
     @FXML
     private ImageView nextSlideButton;
@@ -156,16 +133,14 @@ public class SecondaryController implements Initializable {
     private JFXButton MenuButtonItem0;
     @FXML
     private JFXButton MenuButton2;
-        @FXML
+    @FXML
     private JFXButton MenuButton21;
     @FXML
     private JFXButton MenuButtonItem1;
-
-        @FXML
+    @FXML
     private JFXButton MenuButtonItem11;
-            @FXML
+    @FXML
     private JFXButton MenuButtonItem01;
-
     @FXML
     private JFXButton adminbutton;
     @FXML
@@ -184,8 +159,24 @@ public class SecondaryController implements Initializable {
     private Label title7;
     @FXML
     private Label title8;
-
-
+    @FXML
+    private ImageView button1;
+    @FXML
+    private ImageView button2;
+    @FXML
+    private ImageView button3;
+    @FXML
+    private ImageView button4;
+    @FXML
+    private ImageView button5;
+    @FXML
+    private ImageView button6;
+    @FXML
+    private ImageView button7;
+    @FXML
+    private ImageView button8;
+    
+    
     private ObservableList<Integer> idList = FXCollections.observableArrayList();
     private ObservableList<JFXTextArea> descriptionList = FXCollections.observableArrayList(moviedescrip1,moviedescrip2,moviedescrip3,moviedescrip4,moviedescrip5,moviedescrip6,moviedescrip7,moviedescrip8);
     private ObservableList<ImageView> pictureList = FXCollections.observableArrayList(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8);
@@ -198,7 +189,11 @@ public class SecondaryController implements Initializable {
         
        
 
-
+        if (SessionManager.admin) {
+            adminbutton.setVisible(true);
+        }else{
+            adminbutton.setVisible(false);
+        }
         
         ScaleTransition scaleIn = new ScaleTransition(Duration.seconds(0.5), movie1);
         scaleIn.setToX(1.2);
@@ -454,6 +449,7 @@ public class SecondaryController implements Initializable {
         
      
     }
+    
     @FXML
     void onUserButton(MouseEvent event) {
         MenuButton1.setOpacity(0.7);
@@ -461,13 +457,15 @@ public class SecondaryController implements Initializable {
         MenuButton0.setStyle("-fx-background-color: #494949");
         
     }
+    
     @FXML
     void outUserButton(MouseEvent event) {
         MenuButton1.setOpacity(0);
         MenuButton1.setStyle("-fx-background-color: transparent");
         MenuButton0.setStyle("-fx-background-color: transparent");
 
-    }        
+    } 
+    
     @FXML
     void onClickedLogout(MouseEvent event) throws IOException {
         System.out.println("Logout was successful.");
@@ -476,24 +474,37 @@ public class SecondaryController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        SessionManager.userID = 0;
+        SessionManager.admin = false;
 
     }
+    
     @FXML
     void onClickedMovie(MouseEvent event) throws IOException {
         
-        ImageView clickedImageView = (ImageView) event.getSource();
+    Node sourceNode = (Node) event.getSource();
+    
+    if (sourceNode instanceof ImageView) {
+        ImageView clickedImageView = (ImageView) sourceNode;
         // Get the fx:id or any other property
         String imageViewId = clickedImageView.getId();
-        String numericPart = imageViewId.replace("movie", "");
+        String numericPart = imageViewId.replaceAll("[^0-9]", "");
         int conv_MovieID = Integer.parseInt(numericPart);
-        SessionManager.movieID = conv_MovieID;
+        System.out.println(idList.get(conv_MovieID-1)+"ist die ID des Filmes! der code zum seite wechseln ist noch im comment!!!!!!!!!!!!!");
+        SessionManager.movieID = idList.get(conv_MovieID-1);
         
+        // Do something with conv_MovieID
+    }else {
+        System.out.println("funktioniert nicht!");
+        return;
+    }
+        System.out.println(SessionManager.movieID);
         
-        root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//        root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
 
     }
 
@@ -526,8 +537,9 @@ public class SecondaryController implements Initializable {
         MenuButtonItem0.setStyle("-fx-background-color: transparent");
         MenuButtonItem1.setStyle("-fx-background-color: transparent");
         MenuButton2.setStyle("-fx-background-color: transparent");
-    }
-        @FXML
+    } 
+    
+    @FXML
     private void outMenuButton21(MouseEvent event) {
         MenuButton21.setOpacity(0.7);
         MenuButtonItem01.setOpacity(0);
@@ -537,7 +549,6 @@ public class SecondaryController implements Initializable {
         MenuButton21.setStyle("-fx-background-color: transparent");
     }
 
-    //@author jrwie
     @FXML
     private void onMenuButton2(MouseEvent event) {
         MenuButtonItem0.setOpacity(1);
@@ -548,7 +559,7 @@ public class SecondaryController implements Initializable {
         MenuButton2.setStyle("-fx-background-color: #494949");
     }
     
-        @FXML
+    @FXML
     private void onMenuButton21(MouseEvent event) {
         MenuButtonItem01.setOpacity(1);
         MenuButtonItem11.setOpacity(1);
@@ -559,7 +570,6 @@ public class SecondaryController implements Initializable {
     }
 
 
-    //@author jrwie
     @FXML
     private void toAdmin(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -569,7 +579,6 @@ public class SecondaryController implements Initializable {
         stage.show();
     }
 
-    //@author jrwie
     @FXML
     private void onRefresh(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -579,23 +588,19 @@ public class SecondaryController implements Initializable {
         stage.show();
     }
 
-    //@author jrwie
     @FXML
     private void offAdminbutton(MouseEvent event) {
         adminbutton.setStyle("-fx-background-color: transparent");
     }
 
-    //@author jrwie
     @FXML
     private void onAdminbutton(MouseEvent event) {
         adminbutton.setStyle("-fx-background-color: #494949");
     }
 
-    //@author jrwie
     @FXML
     private void fillMovies() throws SQLException{
         
-        ObservableList<Integer> idList = FXCollections.observableArrayList();
         ObservableList<JFXTextArea> descriptionList = FXCollections.observableArrayList(moviedescrip1,moviedescrip2,moviedescrip3,moviedescrip4,moviedescrip5,moviedescrip6,moviedescrip7,moviedescrip8);
         ObservableList<ImageView> pictureList = FXCollections.observableArrayList(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8);
         ObservableList<Label> titleList = FXCollections.observableArrayList(title1,title2,title3,title4,title5,title6,title7,title8);
