@@ -3,11 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.login;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author jrwie
+ */
+
+/**
+ * Implementation of SQL Injection security
+ * @author taha
  */
 public class LoginCheck {
     
@@ -43,18 +51,13 @@ public class LoginCheck {
     public boolean userCompare(){
         try{
             
-            //con = connection
             con = dbconnect.connect();
-            Statement stm = con.createStatement();
-            
-            
-            String sql = "SELECT * FROM userlogin.user WHERE BINARY User_name='"+this.getUser()+"' and BINARY User_password='"+this.getPassword()+"';";
-            
-            //rs = resultSet
-            ResultSet rs = stm.executeQuery(sql);
-            
-            
-        
+            String sql = "SELECT * FROM userlogin.user WHERE BINARY User_name = ? AND BINARY User_password = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, this.getUser());
+            pstmt.setString(2, this.getPassword());
+
+            ResultSet rs = pstmt.executeQuery();        
             
             if(rs.next()){
                 System.out.println("right userlogin");
