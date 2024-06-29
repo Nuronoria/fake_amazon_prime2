@@ -207,6 +207,7 @@ public class RegisterController implements Initializable {
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+                break;
                 
             default:
                 System.out.println("etwas ist im switch case schief gelaufen");

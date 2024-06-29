@@ -11,5 +11,6 @@ package com.mycompany.login;
 public class SessionManager {
     public static int userID;
     public static int movieID;
+    public static boolean admin = true;
     
 }
