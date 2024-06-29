@@ -29,18 +29,8 @@ docker swarm init 2>/dev/null || true
 
 # Remove the stack if it already exists to avoid conflicts
 docker stack rm DB-stack
-sleep 10  # Wait for the stack to be removed
 
 # Deploy the stack using Docker Compose
 docker stack deploy -c ../docker-compose.yml DB-stack
 
-# Wait for the database to initialize
-sleep 10
-
-cd ../login
-mvn clean package
-
-mvn javafx:run
-
-# Cleanup secrets files
-rm db_user.txt db_password.txt
+mysql -h 127.0.0.1 -P 3308 -u root -p password123
