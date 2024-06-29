@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `User_ID` int NOT NULL AUTO_INCREMENT,
   `User_name` varchar(45) NOT NULL,
-  `User_password` varchar(45) NOT NULL,
+  `User_password` varchar(256) NOT NULL,
   `User_email` varchar(45) NOT NULL,
   `User_admin` bit(1) NOT NULL,
   PRIMARY KEY (`User_ID`),
@@ -44,6 +44,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.com',_binary '');
+
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
