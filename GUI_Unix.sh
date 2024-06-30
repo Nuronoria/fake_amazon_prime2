@@ -35,7 +35,7 @@ docker swarm init 2>/dev/null || true
 # Remove the stack if it already exists to avoid conflicts
 docker stack rm DB-stack
 
-
+sleep 10
 
 # Remove any existing network to avoid network not found error
 docker network rm DB-stack_default 2>/dev/null || true
@@ -44,6 +44,9 @@ docker network rm DB-stack_default 2>/dev/null || true
 docker stack deploy -c ../docker-compose.yml DB-stack
 
 # Wait for the database to initialize
+sleep 10 # Don't remove because its really important.
+
+
 
 cd ../login
 mvn clean package
