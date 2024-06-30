@@ -15,15 +15,117 @@
 
 <AnchorPane id="AnchorPane" prefHeight="796.0" prefWidth="913.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.login.TertiaryController">
    <children>
-      <ScrollPane prefHeight="800.0" prefWidth="915.0">
+      <ScrollPane fx:id="scrollpane" prefHeight="1800.0" prefWidth="915.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="900.0" style="-fx-background-color: black;">
+          <AnchorPane prefHeight="1434.0" prefWidth="900.0" style="-fx-background-color: black;">
                <children>
+                  <ImageView fitHeight="73.0" fitWidth="39.0" layoutX="19.0" layoutY="20.0" onMouseClicked="#onBackToSecond" opacity="0.5" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="imagebanner" fitHeight="290.0" fitWidth="900.0" layoutY="94.0" nodeOrientation="INHERIT" pickOnBounds="true">
                      <image>
                         <Image url="@jockerbanner.jpeg" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="imagelogo" fitHeight="100.0" fitWidth="500.0" layoutX="59.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@jokerlogo.PNG" />
+                     </image>
+                  </ImageView>
+                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="531.0" prefHeight="255.0" prefWidth="782.0" text="FILLER">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                  </JFXTextArea>
+                  <VBox layoutX="707.0" layoutY="1075.0" prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 1;">
+                     <children>
+                        <JFXButton onMouseClicked="#onAddComment" styleClass="addComment" text="+ Add Comment" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <Label layoutX="87.0" layoutY="839.0" style="-fx-background-color: #;" text="Genre" textFill="#d4d4d4" underline="true">
+                     <font>
+                        <Font name="Arial Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="genrebox" layoutX="87.0" layoutY="886.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="Comedy" style="-fx-background-color: #;" text="Comedy" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Romance" text="Romance" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Drama" text="Drama" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Crime" style="-fx-background-color: #;" text="Crime" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Thriller" style="-fx-background-color: #;" text="Thriller" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Horror" style="-fx-background-color: #;" text="Horror" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Mystery" style="-fx-background-color: #;" text="Mystery" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label layoutX="87.0" layoutY="931.0" style="-fx-background-color: #;" text="Subtitles" textFill="#d4d4d4" underline="true">
+                     <font>
+                        <Font name="Arial Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="languagesbox" layoutX="87.0" layoutY="978.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="Englisch" style="-fx-background-color: #;" text="Englisch" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Deutsch" text="Deutsch" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Spanisch" text="Spanisch" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Chinesisch" style="-fx-background-color: #;" text="Chinesisch" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Koreanisch" style="-fx-background-color: #;" text="Koreanisch" textFill="#d4d4d4" visible="false">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <VBox layoutX="59.0" layoutY="1114.0" prefHeight="313.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
                      <children>
                         <Label text="Comments" textFill="WHITE">
@@ -39,7 +141,7 @@
                         </Label>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="username0" text="Anna Lisa S." textFill="DARKGRAY">
+                              <Label fx:id="username0" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -57,7 +159,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="date0" prefHeight="44.0" prefWidth="110.0" text="12.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date0" prefHeight="44.0" prefWidth="110.0" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -77,7 +179,7 @@
                         </HBox>
                         <HBox prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="comment0" prefHeight="31.0" prefWidth="736.0" textFill="WHITE">
+                              <Label fx:id="comment0" prefHeight="31.0" prefWidth="736.0" text="FILLER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -89,7 +191,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="username1" text="Markus T." textFill="DARKGRAY">
+                              <Label fx:id="username1" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -107,7 +209,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="date1" prefHeight="44.0" prefWidth="110.0" text="10.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date1" prefHeight="44.0" prefWidth="110.0" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -115,7 +217,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Rating fx:id="rating1" disable="true" prefHeight="34.0" prefWidth="176.0" rating="3.0">
+                              <Rating fx:id="rating1" disable="true" prefHeight="34.0" prefWidth="176.0" rating="0.0">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -124,7 +226,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="comment1" prefHeight="31.0" prefWidth="736.0" text="&quot;Der Film war insgesamt in Ordnung. Die Handlung hatte einige interessante Momente.&quot;" textFill="WHITE">
+                              <Label fx:id="comment1" prefHeight="31.0" prefWidth="736.0" text="FILLER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -136,7 +238,7 @@
                         </HBox>
                         <HBox fillHeight="false" prefHeight="35.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="username2" text="David K." textFill="DARKGRAY">
+                              <Label fx:id="username2" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -154,7 +256,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="date2" prefHeight="44.0" prefWidth="110.0" text="09.Juni.2024" textFill="DARKGRAY">
+                              <Label fx:id="date2" prefHeight="44.0" prefWidth="110.0" text="FILLER" textFill="DARKGRAY">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
@@ -162,7 +264,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Rating fx:id="rating2" disable="true" prefHeight="34.0" prefWidth="176.0">
+                              <Rating fx:id="rating2" disable="true" prefHeight="34.0" prefWidth="176.0" rating="0.0">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -171,7 +273,7 @@
                         </HBox>
                         <HBox prefHeight="34.0" prefWidth="760.0">
                            <children>
-                              <Label fx:id="comment2" prefHeight="31.0" prefWidth="736.0" text="&quot;Leider hat mich der Film enttäuscht. Die Handlung war vorhersehbar und es fehlte an Spannung.&quot;" textFill="WHITE">
+                              <Label fx:id="comment2" prefHeight="31.0" prefWidth="736.0" text="FILLER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -183,70 +285,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <ImageView fx:id="imagelogo" fitHeight="100.0" fitWidth="500.0" layoutX="59.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@jokerlogo.PNG" />
-                     </image>
-                  </ImageView>
-                  <JFXTextArea fx:id="moviedescript" editable="false" layoutX="59.0" layoutY="531.0" prefHeight="255.0" prefWidth="782.0" text="Joker: Folie à Deux[a] is an upcoming American musical psychological thriller film directed by Todd Phillips from a screenplay co-written with Scott Silver. The sequel to Joker (2019), loosely based on DC Comics characters, Joaquin Phoenix reprises his role as the Joker, with Lady Gaga joining the cast as his love interest, Harley Quinn. Zazie Beetz also reprises her role from the previous film, while Brendan Gleeson, and Catherine Keener also join the cast. It is produced by Warner Bros. Pictures and DC Studios in association with Joint Effort.">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                  </JFXTextArea>
-                  <ImageView fx:id="backbutton" fitHeight="73.0" fitWidth="39.0" layoutX="19.0" layoutY="20.0" onMouseClicked="#onBackToSecond" opacity="0.5" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                     <image>
-                        <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
-                     </image>
-                  </ImageView>
-                  <VBox layoutX="707.0" layoutY="1075.0" prefHeight="26.0" prefWidth="130.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 1;">
-                     <children>
-                        <JFXButton onMouseClicked="#onAddComment" styleClass="addComment" text="+ Add Comment" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <Label fx:id="genre0" layoutX="87.0" layoutY="886.0" style="-fx-background-color: #;" text="Comedy" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="genre1" layoutX="187.0" layoutY="886.0" text="Comedy" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="genre2" layoutX="287.0" layoutY="886.0" text="Comedy" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="genre01" layoutX="87.0" layoutY="839.0" style="-fx-background-color: #;" text="Genre" textFill="#d4d4d4" underline="true">
-                     <font>
-                        <Font name="Arial Bold" size="29.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="language0" layoutX="87.0" layoutY="978.0" style="-fx-background-color: #;" text="Englisch" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="language1" layoutX="187.0" layoutY="978.0" text="Deutsch" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="language2" layoutX="287.0" layoutY="978.0" text="Spanisch" textFill="#d4d4d4">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="languageLabel" layoutX="87.0" layoutY="931.0" style="-fx-background-color: #;" text="Subtitles" textFill="#d4d4d4" underline="true">
-                     <font>
-                        <Font name="Arial Bold" size="29.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
         </content>
