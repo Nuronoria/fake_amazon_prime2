@@ -1,7 +1,6 @@
 package com.mycompany.login;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,8 +37,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("Application started!");
-
         launch();
     }
 

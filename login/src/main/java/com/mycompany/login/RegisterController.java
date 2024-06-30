@@ -8,7 +8,6 @@ package com.mycompany.login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -208,6 +207,7 @@ public class RegisterController implements Initializable {
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+                break;
                 
             default:
                 System.out.println("etwas ist im switch case schief gelaufen");

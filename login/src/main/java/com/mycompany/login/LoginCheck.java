@@ -3,21 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.login;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.mycompany.Utilities.EncryptionUtil;
+import java.sql.*;
 
 /**
  *
  * @author jrwie
- */
-
-/**
- * Implementation of SQL Injection security
- * @author taha
  */
 public class LoginCheck {
     
@@ -45,7 +35,7 @@ public class LoginCheck {
     }
     /*
     public static void main(String[] args){
-        //System.out.println("ich war in der class"); 
+        //System.out.println("ich war in der class");
         LoginCheck test = new LoginCheck("Admin","1234");
         test.userCompare();
     }
@@ -53,18 +43,18 @@ public class LoginCheck {
     public boolean userCompare(){
         try{
             
+            //con = connection
             con = dbconnect.connect();
+            Statement stm = con.createStatement();
             
-            // Encrypt password before comparing it with the DB        
-            String encryptedPassword = EncryptionUtil.encrypt(this.getPassword());
-
-            // Using a parametirized query to prevent SQL injections
-            String sql = "SELECT * FROM userlogin.user WHERE BINARY User_name = ? AND BINARY User_password = ?";
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, this.getUser());
-            pstmt.setString(2, encryptedPassword);
-
-            ResultSet rs = pstmt.executeQuery();        
+            
+            String sql = "SELECT * FROM userlogin.user WHERE BINARY User_name='"+this.getUser()+"' and BINARY User_password='"+this.getPassword()+"';";
+            
+            //rs = resultSet
+            ResultSet rs = stm.executeQuery(sql);
+            
+            
+        
             
             if(rs.next()){
                 System.out.println("right userlogin");
