@@ -29,13 +29,12 @@ docker swarm init 2>/dev/null || true
 
 # Remove the stack if it already exists to avoid conflicts
 docker stack rm DB-stack
-sleep 10  # Wait for the stack to be removed
+
 
 # Deploy the stack using Docker Compose
 docker stack deploy -c ../docker-compose.yml DB-stack
 
 # Wait for the database to initialize
-sleep 10
 
 cd ../login
 mvn clean package
