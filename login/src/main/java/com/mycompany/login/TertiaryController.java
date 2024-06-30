@@ -165,9 +165,21 @@ public class TertiaryController implements Initializable {
         Collections.shuffle(CommentUserID);
         System.out.println(CommentUserID.size());
         
-
-        
-        for(int i = 0; i < CommentUserID.size(); i++){
+        if(CommentUserID.size() > 3){
+            for (int i = 0; i < 3 ; i++){
+                int randUserId = CommentUserID.get(i);
+                String comment = getComment(con, randUserId, movieID);
+                String Username = getCommentUsername(con, randUserId, movieID);
+                String Date = getCommentDate(con, randUserId, movieID);
+                Double Rating = getCommentRating(con, randUserId, movieID);
+                ratings[i].setRating(Rating);
+                comments[i].setText(comment);
+                usernames[i].setText(Username);
+                dates[i].setText(Date);
+            }
+ 
+        }else{
+            for(int i = 0; i < CommentUserID.size(); i++){
             int randUserId = CommentUserID.get(i);
             String comment = getComment(con, randUserId, movieID);
             String Username = getCommentUsername(con, randUserId, movieID);
@@ -178,6 +190,10 @@ public class TertiaryController implements Initializable {
             usernames[i].setText(Username);
             dates[i].setText(Date);
         }
+        }
+
+        
+
 
         
     
