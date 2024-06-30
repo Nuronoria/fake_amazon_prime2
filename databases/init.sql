@@ -1,11 +1,5 @@
 CREATE DATABASE IF NOT EXISTS userlogin;
 
-CREATE USER IF NOT EXISTS 'taha'@'%' IDENTIFIED BY 'password123';
-
-GRANT ALL PRIVILEGES ON userlogin.* TO 'taha'@'%';
-
-FLUSH PRIVILEGES;
-
 USE userlogin;
 
 SOURCE /docker-entrypoint-initdb.d/userlogin_comment.sql;

@@ -8,8 +8,6 @@ ENV MYSQL_DATABASE=userlogin
 
 # Use Docker secrets for sensitive data
 # Docker secrets will be available as files in /run/secrets
-ENV MYSQL_USER_FILE=/run/secrets/db_user
-ENV MYSQL_PASSWORD_FILE=/run/secrets/db_password
 ENV MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_password
 
 # Copy initialization SQL scripts
@@ -23,4 +21,4 @@ COPY userlogin_movielanguage.sql /docker-entrypoint-initdb.d/
 COPY userlogin_user.sql /docker-entrypoint-initdb.d/
 
 # Expose the MySQL port
-EXPOSE 3306
+EXPOSE 3308

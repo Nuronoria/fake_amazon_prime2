@@ -43,7 +43,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.com',_binary ''),(2,'maxmustermann','1234','max.m@gmail.com',_binary '\0'),(3,'markus.T','1234','markus.T@gmail.de',_binary '\0'),(4,'david.K','1234','david.K@gmail.de',_binary '\0'),(5,'testid','1234','testid@gmail.com',_binary '\0');
+INSERT INTO `user` VALUES (1,'admin','GmcYVu1XLNFLwfDvnrzJPw==','admin@admin.com',_binary ''),(2,'maxmustermann','MTIzNAo=','max.m@gmail.com',_binary '\0'),(3,'markus.T','MTIzNAo=','markus.T@gmail.de',_binary '\0'),(4,'david.K','MTIzNAo=','david.K@gmail.de',_binary '\0'),(5,'testid','MTIzNAo=','testid@gmail.com',_binary '\0');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
