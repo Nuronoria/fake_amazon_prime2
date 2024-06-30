@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -178,6 +179,7 @@ public class AdmindeletemovieController implements Initializable {
         stage.show();
     }
 
+    @FXML
     private void deleteSelectedPerson(ActionEvent event) {
         Movie selectedMovie = table.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {

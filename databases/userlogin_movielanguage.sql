@@ -29,8 +29,8 @@ CREATE TABLE `movielanguage` (
   `Language_ID` int NOT NULL,
   KEY `movie_idx` (`Movie_ID`),
   KEY `language_idx` (`Language_ID`),
-  CONSTRAINT `language_key` FOREIGN KEY (`Language_ID`) REFERENCES `language` (`Language_ID`),
-  CONSTRAINT `movie_key` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`)
+  CONSTRAINT `language_key` FOREIGN KEY (`Language_ID`) REFERENCES `language` (`Language_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `movie_key` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +40,7 @@ CREATE TABLE `movielanguage` (
 
 LOCK TABLES `movielanguage` WRITE;
 /*!40000 ALTER TABLE `movielanguage` DISABLE KEYS */;
+INSERT INTO `movielanguage` VALUES (8,2),(8,1),(8,3),(13,3),(13,5);
 /*!40000 ALTER TABLE `movielanguage` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-19 12:06:24
+-- Dump completed on 2024-06-30 17:58:43

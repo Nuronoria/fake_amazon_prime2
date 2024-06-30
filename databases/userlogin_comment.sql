@@ -29,16 +29,16 @@ CREATE TABLE `comment` (
   `User_ID` int NOT NULL,
   `Movie_ID` int NOT NULL,
   `Comment_text` varchar(500) NOT NULL,
-  `Comment_rating` int NOT NULL,
-  `Comment_date` timestamp NOT NULL,
+  `Comment_rating` double NOT NULL,
+  `Comment_date` date NOT NULL,
   PRIMARY KEY (`Comment_ID`),
   UNIQUE KEY `Comment_ID_UNIQUE` (`Comment_ID`),
   KEY `movie_idx` (`Movie_ID`),
   KEY `user_idx` (`User_ID`),
-  CONSTRAINT `movie` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`),
-  CONSTRAINT `user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`),
+  CONSTRAINT `movie` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `comment_chk_1` CHECK (((`Comment_rating` >= 1) and (`Comment_rating` <= 5)))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,1,1,'aadswaeqwdsa',5,'2017-07-23 11:10:11');
+INSERT INTO `comment` VALUES (18,1,8,'\"admin test\"',4,'2024-06-29'),(19,1,12,'\"\"',4,'2024-06-29');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-19 12:06:25
+-- Dump completed on 2024-06-30 17:58:43

@@ -29,8 +29,8 @@ CREATE TABLE `moviegenre` (
   `Genre_ID` int NOT NULL,
   KEY `movie_key_idx` (`Movie_ID`),
   KEY `genre_key_idx` (`Genre_ID`),
-  CONSTRAINT `genre_key` FOREIGN KEY (`Genre_ID`) REFERENCES `genre` (`Genre_ID`),
-  CONSTRAINT `movie_g_key` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`)
+  CONSTRAINT `genre_key` FOREIGN KEY (`Genre_ID`) REFERENCES `genre` (`Genre_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `movie_g_key` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +40,7 @@ CREATE TABLE `moviegenre` (
 
 LOCK TABLES `moviegenre` WRITE;
 /*!40000 ALTER TABLE `moviegenre` DISABLE KEYS */;
+INSERT INTO `moviegenre` VALUES (7,1),(8,4),(8,6),(13,3),(13,7);
 /*!40000 ALTER TABLE `moviegenre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-19 12:06:25
+-- Dump completed on 2024-06-30 17:58:44

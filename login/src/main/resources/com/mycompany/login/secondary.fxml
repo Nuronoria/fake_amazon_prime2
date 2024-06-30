@@ -33,16 +33,13 @@
             <Pane fx:id="movieanch1" layoutX="100.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
                <children>
                    <ImageView fx:id="movie1" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" onMouseClicked="#onClickedMovie" pickOnBounds="true" preserveRatio="true">
-                       <image>
-                        <Image url="@Queen_of_Tears_poster.png" />
-                       </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                    </ImageView>
                   <Pane fx:id="slider1" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea fx:id="moviedescrip1" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="The series depicts the crisis and rekindling of love between Hong Hae-in, a third-generation chaebol heiress of Queens ....">
+                        <JFXTextArea fx:id="moviedescrip1" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" style="-fx-text-inner-color: #d4d4d4;" text="FILLER">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
@@ -57,7 +54,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="115.0" text="Queen of Tears" textFill="#d4d4d4">
+                        <Label fx:id="title1" layoutX="26.0" layoutY="115.0" text="FILLER" textFill="#d4d4d4">
                            <font>
                               <Font name="Arial Bold" size="21.0" />
                            </font>
@@ -74,16 +71,13 @@
             <Pane fx:id="movieanch2" layoutX="300.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="movie2" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" onMouseClicked="#onClickedMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@movieposter2.PNG" />
-                     </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <Pane fx:id="slider2" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea fx:id="moviedescrip2" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="The sequel to Joker (2019), loosely based on DC Comics characters, Joaquin Phoenix reprises his role as the ...">
+                        <JFXTextArea fx:id="moviedescrip2" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" style="-fx-text-inner-color: #d4d4d4;" text="FILLER">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
@@ -98,7 +92,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="115.0" text="Joker" textFill="#d4d4d4">
+                        <Label fx:id="title2" layoutX="26.0" layoutY="115.0" text="FILLER" textFill="#d4d4d4">
                            <font>
                               <Font name="Arial Bold" size="21.0" />
                            </font>
@@ -115,16 +109,13 @@
             <Pane fx:id="movieanch3" layoutX="500.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="movie3" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" onMouseClicked="#onClickedMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@movieposter3.PNG" />
-                     </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <Pane fx:id="slider3" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea fx:id="moviedescrip3" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="After Russell wins Adelaide a Michael Jackson 'Thriller' T-shirt at a carnival game and plays Whac-a-Mole, Adelai...">
+                        <JFXTextArea fx:id="moviedescrip3" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" style="-fx-text-inner-color: #d4d4d4;" text="FILLER">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
@@ -139,7 +130,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="115.0" text="Us" textFill="#d4d4d4">
+                        <Label fx:id="title3" layoutX="26.0" layoutY="115.0" text="FILLER" textFill="#d4d4d4">
                            <font>
                               <Font name="Arial Bold" size="21.0" />
                            </font>
@@ -156,16 +147,13 @@
             <Pane fx:id="movieanch4" layoutX="700.0" layoutY="19.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="movie4" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" onMouseClicked="#onClickedMovie" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@movieposter.PNG" />
-                     </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <Pane fx:id="slider4" layoutY="200.0" prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea fx:id="moviedescrip4" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" text="In Miami, a drug dealer named Juan (Mahershala Ali) meets with one of his boys near the dope holes in town...">
+                        <JFXTextArea fx:id="moviedescrip4" focusColor="#446fef" layoutX="24.0" layoutY="150.0" prefHeight="82.0" prefWidth="178.0" style="-fx-text-inner-color: #d4d4d4;" text="FILLER">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
@@ -180,7 +168,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="115.0" text="Moonlight" textFill="#d4d4d4">
+                        <Label fx:id="title4" layoutX="26.0" layoutY="115.0" text="FILLER" textFill="#d4d4d4">
                            <font>
                               <Font name="Arial Bold" size="21.0" />
                            </font>
@@ -194,7 +182,7 @@
                   </Pane>
                </children>
             </Pane>
-            <ImageView fx:id="nextSlideButton" fitHeight="63.0" fitWidth="42.0" layoutX="890.0" layoutY="86.0" onMouseClicked="#nextSlide" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="nextSlideButton" fitHeight="63.0" fitWidth="42.0" layoutX="890.0" layoutY="86.0" onMouseClicked="#nextSlide" opacity="0.3" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0;">
                <image>
                   <Image url="@a99rnbdjdo7qbirto4a5ivqhr3.png" />
                </image>
@@ -358,7 +346,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="MenuButton1" alignment="CENTER" layoutX="704.0" layoutY="109.0" onMouseClicked="#onClickedLogout" onMouseEntered="#onUserButton" onMouseExited="#outUserButton" opacity="0.7" prefHeight="50.0" prefWidth="150.0" styleClass="buttonStyle" text="Logout" textFill="WHITE">
+      <JFXButton fx:id="MenuButton1" alignment="CENTER" layoutX="704.0" layoutY="109.0" onMouseClicked="#onClickedLogout" onMouseEntered="#onUserButton" onMouseExited="#outUserButton" opacity="0.7" prefHeight="50.0" prefWidth="150.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Logout" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -370,7 +358,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="MenuButton0" alignment="CENTER" layoutX="704.0" layoutY="59.0" onMouseEntered="#onUserButton" onMouseExited="#outUserButton" opacity="0.7" prefHeight="50.0" prefWidth="150.0" styleClass="buttonStyle" text="UserName" textFill="WHITE">
+      <JFXButton fx:id="MenuButton0" alignment="CENTER" layoutX="704.0" layoutY="59.0" onAction="#fillMovies" onMouseEntered="#onUserButton" onMouseExited="#outUserButton" opacity="0.7" prefHeight="50.0" prefWidth="150.0" styleClass="buttonStyle" text="UserName" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -382,7 +370,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="MenuButtonItem0" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="109.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" styleClass="buttonStyle" text="Alles" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem0" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="109.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Alles" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -395,12 +383,12 @@
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <JFXButton fx:id="MenuButtonItem1" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="159.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" styleClass="buttonStyle" text="Filme" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem1" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="159.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Filme" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="614.0" layoutY="73.0" onMouseClicked="#toAdmin" text="Admin" textFill="WHITE">
+      <JFXButton fx:id="adminbutton" layoutX="614.0" layoutY="73.0" onMouseClicked="#toAdmin" onMouseEntered="#onAdminbutton" onMouseExited="#offAdminbutton" text="Admin" textFill="WHITE">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -410,5 +398,23 @@
             <Image url="@refresh.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="MenuButtonItem01" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="109.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Comedy" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="MenuButton21" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="59.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.7" prefHeight="50.0" prefWidth="111.0" styleClass="buttonStyle" text="Kategorien" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXButton>
+      <JFXButton fx:id="MenuButtonItem11" alignment="BASELINE_LEFT" layoutX="403.0" layoutY="159.0" onMouseEntered="#onMenuButton21" onMouseExited="#outMenuButton21" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Horror" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

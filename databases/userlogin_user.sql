@@ -27,14 +27,14 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `User_ID` int NOT NULL AUTO_INCREMENT,
   `User_name` varchar(45) NOT NULL,
-  `User_password` varchar(256) NOT NULL,
+  `User_password` varchar(45) NOT NULL,
   `User_email` varchar(45) NOT NULL,
   `User_admin` bit(1) NOT NULL,
   PRIMARY KEY (`User_ID`),
   UNIQUE KEY `User_ID_UNIQUE` (`User_ID`),
   UNIQUE KEY `User_name_UNIQUE` (`User_name`),
   UNIQUE KEY `User_email_UNIQUE` (`User_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','GmcYVu1XLNFLwfDvnrzJPw==','admin@admin.com',_binary '');
+INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.com',_binary ''),(2,'maxmustermann','1234','max.m@gmail.com',_binary '\0'),(3,'markus.T','1234','markus.T@gmail.de',_binary '\0'),(4,'david.K','1234','david.K@gmail.de',_binary '\0'),(5,'testid','1234','testid@gmail.com',_binary '\0');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-19 12:06:25
+-- Dump completed on 2024-06-30 17:58:43

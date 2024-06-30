@@ -47,7 +47,7 @@ public class AdminmenuController implements Initializable {
 
     @FXML
     private void deletemovie(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+        root = FXMLLoader.load(getClass().getResource("admindeletemovie.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -5,8 +5,13 @@
 package com.mycompany.login;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -31,6 +36,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+
 /**
  * FXML Controller class
  *
@@ -41,9 +47,12 @@ public class AdminaddmovieController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Image moviepicture;
-    private Image moviebanner;
-    private Image movielogo;
+    private File moviepicture;
+    private File moviebanner;
+    private File movielogo;
+    private String moviepictureFormat;
+    private String moviebannerFormat;
+    private String movielogoFormat;
     
     @FXML
     private AnchorPane pane1;
@@ -56,21 +65,15 @@ public class AdminaddmovieController implements Initializable {
     @FXML
     private Label site;
     @FXML
-    private Label moviepicturename;
-    @FXML
     private AnchorPane imagefield2;
     @FXML
     private ImageView image2;
     @FXML
     private AnchorPane dragfield2;
     @FXML
-    private Label moviepicturename1;
-    @FXML
     private AnchorPane imagefield3;
     @FXML
     private AnchorPane dragfield3;
-    @FXML
-    private Label moviepicturename11;
     @FXML
     private AnchorPane imagefield4;
     @FXML
@@ -89,6 +92,8 @@ public class AdminaddmovieController implements Initializable {
     private TextField movietitlefield;
     @FXML
     private DatePicker releasedatefield;
+    @FXML
+    private AnchorPane paneend;
 
     /**
      * Initializes the controller class.
@@ -154,15 +159,21 @@ public class AdminaddmovieController implements Initializable {
                 site.setText("(4/4)");
                 break;
             case 4:
-                if(errorcheck4()){
+                if (checkindatabase()) {
+                    errortext.setText("There is already an movie with this Title!");
+                    pane4.setVisible(false);
+                    pane1.setVisible(true);
+                    movietitlefield.setText("");
                     break;
-                }else{
-                    errortext.setText("");
                 }
                 if(errorcheck()){
+                    System.out.println("irgendwas ist schief gelaufen");
+                    errortext.setText("irgendwas ist schief gelaufen");
                     break;
                 }
-                upload();
+                saveToDatabase();
+                pane4.setVisible(false);
+                paneend.setVisible(true);
                 break;
             default:
                 throw new AssertionError();
@@ -230,39 +241,96 @@ public class AdminaddmovieController implements Initializable {
             case 2:
                 if (db.hasFiles()) {
                     String filePath = null;
-                    for (File file : db.getFiles()) {
-                        filePath = file.getAbsolutePath();
-                        moviepicture = new Image(file.toURI().toString());
-                        image2.setImage(moviepicture);
+                    File file = db.getFiles().get(0);
+                    String fileName = file.getName().toLowerCase();
+                    if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png") || fileName.endsWith(".gif")) {
+                        try {
+                            FileInputStream fis = new FileInputStream(file);
+                            Image image = new Image(fis);
+                            fis.close();
+
+                            // Überprüfen, ob die Höhe größer ist als die Breite
+                            if (image.getHeight() >= image.getWidth()) {
+                                errortext.setText("");
+
+                                // Bild im ImageView anzeigen
+                                image2.setImage(image);
+                                dragfield2.setVisible(false);
+                                imagefield2.setVisible(true);
+                                moviepicture = file;
+                            } else {
+                                errortext.setText("Image has the wrong parameters!");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        errortext.setText("Image file has the wrong datatype!");
                     }
-                    dragfield2.setVisible(false);
-                    imagefield2.setVisible(true);
                 }
                 event.consume();
                 break;
             case 3:
                 if (db.hasFiles()) {
                     String filePath = null;
-                    for (File file : db.getFiles()) {
-                        filePath = file.getAbsolutePath();
-                        moviebanner = new Image(file.toURI().toString());
-                        image3.setImage(moviebanner);
+                    File file = db.getFiles().get(0);
+                    String fileName = file.getName().toLowerCase();
+                    if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png") || fileName.endsWith(".gif")) {
+                        try {
+                            FileInputStream fis = new FileInputStream(file);
+                            Image image = new Image(fis);
+                            fis.close();
+
+                            // Überprüfen, ob die Höhe größer ist als die Breite
+                            if (image.getHeight() <= image.getWidth()) {
+                                errortext.setText("");
+
+                                // Bild im ImageView anzeigen
+                                image3.setImage(image);
+                                dragfield3.setVisible(false);
+                                imagefield3.setVisible(true);
+                                moviebanner = file;
+                            } else {
+                                errortext.setText("Image has the wrong parameters!");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        errortext.setText("Image file has the wrong datatype!");
                     }
-                    dragfield3.setVisible(false);
-                    imagefield3.setVisible(true);
                 }
                 event.consume();
                 break;
             case 4:
                 if (db.hasFiles()) {
                     String filePath = null;
-                    for (File file : db.getFiles()) {
-                        filePath = file.getAbsolutePath();
-                        movielogo = new Image(file.toURI().toString());
-                        image4.setImage(movielogo);
+                    File file = db.getFiles().get(0);
+                    String fileName = file.getName().toLowerCase();
+                    if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png") || fileName.endsWith(".gif")) {
+                        try {
+                            FileInputStream fis = new FileInputStream(file);
+                            Image image = new Image(fis);
+                            fis.close();
+
+                            // Überprüfen, ob die Höhe größer ist als die Breite
+                            if (image.getHeight() <= image.getWidth()) {
+                                errortext.setText("");
+
+                                // Bild im ImageView anzeigen
+                                image4.setImage(image);
+                                dragfield4.setVisible(false);
+                                imagefield4.setVisible(true);
+                                movielogo = file;
+                            } else {
+                                errortext.setText("Image has the wrong parameters!");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        errortext.setText("Image file has the wrong datatype!");
                     }
-                    dragfield4.setVisible(false);
-                    imagefield4.setVisible(true);
                 }
                 event.consume();
                 break;
@@ -298,10 +366,6 @@ public class AdminaddmovieController implements Initializable {
                 System.out.println("imagedroppedcheck failed");
                 throw new AssertionError();
         }
-        
-    }
-    
-    private void upload(){
         
     }
     
@@ -365,6 +429,55 @@ public class AdminaddmovieController implements Initializable {
             counter.setTextFill(Paint.valueOf("#ff0000"));
             counter.setText(""+descriptionfield.getLength());
         }
+    }
+    
+    private void saveToDatabase(){
+        try (Connection con = dbconnect.connect()){
+            String sql = "INSERT INTO `userlogin`.`movie` (`Movie_title`, `Movie_description`, `Movie_picture`, `Movie_banner`, `Movie_release`, `Movie_trailerURL`, `Movie_logo`) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            
+            LocalDate date = releasedatefield.getValue();
+            FileInputStream fis1 = new FileInputStream(moviepicture);
+            FileInputStream fis2 = new FileInputStream(moviebanner);
+            FileInputStream fis3 = new FileInputStream(movielogo);
+            
+            pstmt.setString(1, movietitlefield.getText());
+            pstmt.setString(2, descriptionfield.getText());
+            pstmt.setBinaryStream(3, fis1, (int) moviepicture.length());
+            pstmt.setBinaryStream(4, fis2, (int) moviebanner.length());
+            pstmt.setString(5, date.toString());
+            pstmt.setString(6, null);
+            pstmt.setBinaryStream(7, fis3, (int) movielogo.length());
+            
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("savetodatabase hat versagt");
+        }
+    }
+    
+    private boolean checkindatabase(){
+        //con = connection
+        try (Connection con = dbconnect.connect()){
+            String sql = "SELECT * FROM `userlogin`.`movie` WHERE `Movie_title` = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            
+            stm.setString(1, movietitlefield.getText());
+            
+            ResultSet rs = stm.executeQuery();
+            if(rs.next()){
+                con.close();
+                return(true);
+            }else{
+                con.close();
+                return(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error in checkindatabase");
+            return true;
+        } 
     }
     
 }

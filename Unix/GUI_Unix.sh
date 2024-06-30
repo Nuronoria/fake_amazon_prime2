@@ -34,7 +34,7 @@ else
     echo "Secret db_password already exists"
 fi
 
-cd ../Containers
+cd ../databases
 
 # Build the Docker image
 docker build -t userlogin-db -f Dockerfile-db .
