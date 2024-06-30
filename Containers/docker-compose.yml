@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  db:
+    image: userlogin-db
+    environment:
+      MYSQL_DATABASE: userlogin
+      MYSQL_USER_FILE: /run/secrets/db_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_user
+      - db_password
+    ports:
+      - "3308:3308"  # Changed port to 3309 to avoid conflict
+
+secrets:
+  db_user:
+    external: true
+  db_password:
+    external: true
