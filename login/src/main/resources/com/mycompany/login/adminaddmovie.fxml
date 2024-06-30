@@ -117,6 +117,7 @@
                   <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Next" />
                   <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#backbutton" prefHeight="41.0" prefWidth="81.0" text="Back" />
                   <Button layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label fx:id="moviepicturename" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
                </children></AnchorPane>
             <AnchorPane fx:id="pane3" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
@@ -128,6 +129,7 @@
                   <Button layoutX="500.0" layoutY="330.0" mnemonicParsing="false" onAction="#nextbutton" prefHeight="41.0" prefWidth="81.0" text="Next" />
                   <Button layoutX="400.0" layoutY="330.0" mnemonicParsing="false" onAction="#backbutton" prefHeight="41.0" prefWidth="81.0" text="Back" />
                   <Button layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#canclebutton" prefHeight="41.0" prefWidth="81.0" text="Abort" />
+                  <Label fx:id="moviepicturename1" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
                   <StackPane layoutX="27.0" layoutY="45.0" prefHeight="250.0" prefWidth="550.0">
                      <children>
                         <AnchorPane fx:id="imagefield3" maxHeight="250.0" maxWidth="550.0" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -173,6 +175,7 @@
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Label>
+                  <Label fx:id="moviepicturename11" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
                   <StackPane layoutX="27.0" layoutY="45.0" prefHeight="250.0" prefWidth="550.0">
                      <children>
                         <AnchorPane fx:id="imagefield4" maxHeight="250.0" maxWidth="550.0" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -207,16 +210,6 @@
                         <Region onDragDropped="#imagedropped" onDragEntered="#dragenterregion" onDragExited="#dragexitregion" onDragOver="#imagedroppedcheck" opacity="0.7" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </StackPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="paneend" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Button layoutX="274.0" layoutY="139.0" mnemonicParsing="false" onAction="#canclebutton" text="Done" />
-                  <Label alignment="CENTER" layoutX="191.0" layoutY="86.0" prefHeight="22.0" prefWidth="218.0" text="Movie added!!" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Bold" size="18.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>
