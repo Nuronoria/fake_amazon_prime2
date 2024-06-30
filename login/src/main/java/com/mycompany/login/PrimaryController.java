@@ -66,9 +66,12 @@ public class PrimaryController implements Initializable {
         LoginCheck a = new LoginCheck(username,password);
         if(a.userCompare()){
             System.out.println("Login success.");
-            
-            SessionManager.userID = a.getUserID(username);
             System.out.println(SessionManager.userID);
+            if (SessionManager.admin) {
+                System.out.println("is admin");
+            }else{
+                System.out.println("no admin");
+            }
 
 
             root = FXMLLoader.load(getClass().getResource("secondary.fxml"));

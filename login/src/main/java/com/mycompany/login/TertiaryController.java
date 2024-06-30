@@ -33,10 +33,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -46,7 +48,7 @@ import javafx.stage.Stage;
  * @author kjh27
  */
 public class TertiaryController implements Initializable {
-        private Stage stage;
+    private Stage stage;
     private Scene scene;
     private Parent root;
     
@@ -56,13 +58,11 @@ public class TertiaryController implements Initializable {
     private Label[] comments;
     private Label[] usernames;
     private Label[] dates;
-     private Label[] genres;
-     private Label[] languages;
+    private Label[] genres;
+    private Label[] languages;
 
     @FXML
     private TextArea moviedescript;
-    @FXML
-    private ImageView backbutton;
     @FXML
     private Label comment0;
     @FXML
@@ -75,8 +75,6 @@ public class TertiaryController implements Initializable {
     private Rating rating1;
     @FXML
     private Rating rating2;
-    
-
     @FXML
     private Label username1;
     @FXML
@@ -94,42 +92,64 @@ public class TertiaryController implements Initializable {
     @FXML
     private ImageView imagelogo;
     @FXML
-    private Label genre0;
+    private ScrollPane scrollpane;
     @FXML
-    private Label genre1;
+    private Label Comedy;
     @FXML
-    private Label genre2;
+    private Label Romance;
     @FXML
-    private Label language0;
+    private Label Drama;
     @FXML
-    private Label language1;
+    private Label Crime;
     @FXML
-    private Label language2;
+    private Label Thriller;
+    @FXML
+    private Label Horror;
+    @FXML
+    private Label Mystery;
+    @FXML
+    private Label Englisch;
+    @FXML
+    private Label Deutsch;
+    @FXML
+    private Label Spanisch;
+    @FXML
+    private Label Chinesisch;
+    @FXML
+    private Label Koreanisch;
+    @FXML
+    private HBox genrebox;
+    @FXML
+    private HBox languagesbox;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        Random rand = new Random();
+        
+        scrollpane.setPrefSize(915, 800);
         int movieID = SessionManager.movieID;
         
-        //Liste für RandomZahl ohne Wiederholung
-        //random digits 
-        List<Integer> numbers = new ArrayList<>();
-        for(int i=2;i<5;i++){
-            numbers.add(i);
-        }
-        Collections.shuffle(numbers);
         
         //Datenbank aufrufen und Filmbeschreibung einsetzen.
         //call DB and set description
         Connection con;
         con = dbconnect.connect();
         String description = getMovieDescription(con, movieID);
-     
         moviedescript.setText(description);
+        
+        
+        //Loading Image from DB
+        Image image = loadImageFromDatabase(con,movieID);
+        imagebanner.setFitWidth(900);
+        imagebanner.setFitHeight(290);
+        imagebanner.setPreserveRatio(false);
+        imagebanner.setImage(image);
+        
+        Image logo = loadLogoFromDatabase(con,movieID);
+        imagelogo.setFitHeight(100);
+        imagelogo.setImage(logo);
 
         
         //alle ratings einsetzen
@@ -144,83 +164,26 @@ public class TertiaryController implements Initializable {
         //shuffle to get random UserIDs
         Collections.shuffle(CommentUserID);
         
-        for(int i = 0; i < 3; i++){
-            int randUserId = CommentUserID.get(i);
-            String comment = getComment(con, randUserId, movieID);
-            String Username = getCommentUsername(con, randUserId, movieID);
-            String Date = getCommentDate(con, randUserId, movieID);
-            Double Rating = getCommentRating(con, randUserId, movieID);
-            ratings[i].setRating(Rating);
-            comments[i].setText(comment);
-            usernames[i].setText(Username);
-            dates[i].setText(Date);
-        }
+//        for(int i = 0; i < 3; i++){
+//            int randUserId = CommentUserID.get(i);
+//            String comment = getComment(con, randUserId, movieID);
+//            String Username = getCommentUsername(con, randUserId, movieID);
+//            String Date = getCommentDate(con, randUserId, movieID);
+//            Double Rating = getCommentRating(con, randUserId, movieID);
+//            ratings[i].setRating(Rating);
+//            comments[i].setText(comment);
+//            usernames[i].setText(Username);
+//            dates[i].setText(Date);
+//        }
 
         
-        //Update Image to DB
-        String filePath = "src/main/resources/com/mycompany/login/queenbanner.jpg";
-        String filePath2 = "src/main/resources/com/mycompany/login/jockerbanner.jpeg";
-        String filePath3 = "src/main/resources/com/mycompany/login/usbanner.gif";
-        String filePath4 = "src/main/resources/com/mycompany/login/moonlightbanner.jpg";
-        updateImageInDatabase(con, 1, filePath);
-        updateImageInDatabase(con, 2, filePath2);
-        updateImageInDatabase(con, 3, filePath3);
-        updateImageInDatabase(con, 4, filePath4);
-        
-        String LogofilePath = "src/main/resources/com/mycompany/login/queenlogo.png";
-        String LogofilePath2 = "src/main/resources/com/mycompany/login/jokerlogo.png";
-        String LogofilePath3 = "src/main/resources/com/mycompany/login/uslogo.jpg";
-        String LogofilePath4 = "src/main/resources/com/mycompany/login/moonlightlogo.png";
-        updateLogoInDatabase(con, 1, LogofilePath);
-        updateLogoInDatabase(con, 2, LogofilePath2);
-        updateLogoInDatabase(con, 3, LogofilePath3);
-        updateLogoInDatabase(con,4, LogofilePath4);
-           
-        
-        //Loading Image from DB
-        Image image = loadImageFromDatabase(con,movieID);
-        imagebanner.setFitWidth(900);
-        imagebanner.setFitHeight(290);
-        imagebanner.setPreserveRatio(false);
-        imagebanner.setImage(image);
-        
-        Image logo = loadLogoFromDatabase(con,movieID);
-        imagelogo.setFitHeight(100);
-        imagelogo.setImage(logo);
     
         //Get MovieGenre and Set to Labels
+        getMovieGenre(con, movieID);
         
-        genres = new Label[]{genre0, genre1, genre2};
-        genre0.setText("");
-        genre1.setText("");
-        genre2.setText("");
-        
-        List<String> MovieGenre;
-        MovieGenre = getMovieGenre(con, movieID);
-        for(int i =0 ; i < MovieGenre.size(); i++){
-            if(i > 3){
-                break;
-            }else {
-                genres[i].setText(MovieGenre.get(i));
-            }
-            
-        }
         //get languages for subtitles and set Label
-        languages = new Label[]{language0, language1, language2};
-        language0.setText("");
-        language1.setText("");
-        language2.setText("");
+        getLanguages(con, movieID);
         
-        List<String> Languages;
-        Languages = getLanguages(con, movieID);
-        for(int i =0 ; i < Languages.size(); i++){
-            if(i > 3){
-                break;
-            }else {
-                languages[i].setText(Languages.get(i));
-            }
-            
-        }
         
         moviedescript.setStyle("-fx-text-inner-color: #d4d4d4");
     }
@@ -328,8 +291,8 @@ public class TertiaryController implements Initializable {
     
     }
     
-    private List<String> getMovieGenre(Connection con, int movieId) {
-        List<String> genres = new ArrayList<>();
+    private void getMovieGenre(Connection con, int movieId) {
+        genres = new Label[]{Comedy, Romance, Drama, Crime, Thriller, Horror, Mystery};
         int GenreID ;
    
         try {
@@ -342,24 +305,61 @@ public class TertiaryController implements Initializable {
                 try{
                     Statement genreStmt = con.createStatement();
                     ResultSet genreRs = genreStmt.executeQuery(genresql);
-                
-                    if (genreRs.next()){
-                        genres.add(genreRs.getString("Genre_name"));
-                
-                     }
+                    genreRs.next();
+//                    System.out.println(genreRs.getString("Genre_name"));
+                    for(int i=0;i<7;i++){
+                        if(genres[i].getText().compareTo(genreRs.getString("Genre_name"))==0){
+                            genres[i].setVisible(true);
+                            break;
+                        }
+                    }
                 } catch (Exception e){
                     System.out.println("No Genres Found from DB.");
+                    e.printStackTrace();
                 }
 
             }
+            rearrangeLabels(genrebox);
         } catch (Exception e) {
             System.out.println("No Genre_ID Found from DB.");
         }
-        return genres;
     }
+    private void rearrangeLabels(HBox hbox) {
+        // Temporäre Liste, um sichtbare Labels zu speichern
+        List<Label> visibleLabels = new ArrayList<>();
+        List<Label> allLabels = new ArrayList<>();
+
+        // Alle Kinder von HBox durchlaufen und sicherstellen, dass sie vom Typ Label sind
+        for (Node node : hbox.getChildren()) {
+            if (node instanceof Label) {
+                allLabels.add((Label) node);
+            }
+        }
+
+        // Füge sichtbare Labels zur temporären Liste hinzu
+        for (Label label : allLabels) {
+            if (label.isVisible()) {
+                visibleLabels.add(label);
+            }
+        }
+
+        // Entferne alle Labels aus der HBox
+        hbox.getChildren().clear();
+
+        // Füge zuerst die sichtbaren Labels hinzu
+        hbox.getChildren().addAll(visibleLabels);
+
+        // Füge dann die unsichtbaren Labels hinzu
+        for (Label label : allLabels) {
+            if (!label.isVisible()) {
+                hbox.getChildren().add(label);
+            }
+        }
+    }
+
     
-    private List<String> getLanguages(Connection con, int movieId) {
-        List<String> languages = new ArrayList<>();
+    private void getLanguages(Connection con, int movieId) {
+        languages = new Label[]{Englisch, Deutsch, Spanisch, Chinesisch, Koreanisch};
         int Language_ID ;
    
         try {
@@ -372,20 +372,23 @@ public class TertiaryController implements Initializable {
                 try{
                     Statement langStmt = con.createStatement();
                     ResultSet langRs = langStmt.executeQuery(langsql);
-                
-                    if (langRs.next()){
-                        languages.add(langRs.getString("Language_name"));
-                
-                     }
+                    langRs.next();
+                    System.out.println(langRs.getString("Language_name"));
+                    for(int i=0;i<5;i++){
+                        if(languages[i].getText().compareTo(langRs.getString("Language_name"))==0){
+                            languages[i].setVisible(true);
+                            break;
+                        }
+                    }
                 } catch (Exception e){
                     System.out.println("No Languages Found from DB.");
+                    e.printStackTrace();
                 }
-
             }
+            rearrangeLabels(languagesbox);
         } catch (Exception e) {
             System.out.println("No Language_ID Found from DB.");
         }
-        return languages;
     }
     
     
@@ -462,7 +465,7 @@ public class TertiaryController implements Initializable {
     }
     private Double getCommentRating(Connection con, int userId, int movieId) {
        
-        Double Rating = null;
+        Double Rating = (double)0;
         try {
             Statement stm = con.createStatement();
             String sql = "SELECT Comment_rating FROM userlogin.comment WHERE User_ID = " + userId + " AND Movie_ID = " + movieId;

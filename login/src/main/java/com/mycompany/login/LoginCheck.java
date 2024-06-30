@@ -68,6 +68,12 @@ public class LoginCheck {
             
             if(rs.next()){
                 System.out.println("right userlogin");
+                SessionManager.userID = rs.getInt("User_ID");
+                if(rs.getBoolean("User_admin")){
+                    SessionManager.admin = true;
+                }else{
+                    SessionManager.admin = false;
+                }
                 con.close();
                 return(true);
             }else{
@@ -84,26 +90,26 @@ public class LoginCheck {
         return(false);
     }
     
-    public int getUserID(String User_name) throws SQLException {
-        con = dbconnect.connect();
-        
-        int UserID = 0;
-         String sql = "SELECT User_ID FROM userlogin.user WHERE User_name = ?";
-
-        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-        // Set the value for the parameter
-              pstmt.setString(1, User_name);
-        
-        // Execute the query
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                UserID = rs.getInt("User_ID");
-            }
-        }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        con.close();
-        return UserID;
-    }
+//    public int getUserID(String User_name) throws SQLException {
+//        con = dbconnect.connect();
+//        
+//        int UserID = 0;
+//         String sql = "SELECT User_ID FROM userlogin.user WHERE User_name = ?";
+//
+//        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+//        // Set the value for the parameter
+//              pstmt.setString(1, User_name);
+//        
+//        // Execute the query
+//        try (ResultSet rs = pstmt.executeQuery()) {
+//            if (rs.next()) {
+//                UserID = rs.getInt("User_ID");
+//            }
+//        }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        con.close();
+//        return UserID;
+//    }
 }
