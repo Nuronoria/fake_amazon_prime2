@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../Secrets
+cd ../databases
 # Prompt for username and password
 read -p "Enter DB Username: " DB_USER
 read -s -p "Enter DB Password: " DB_PASSWORD
@@ -51,7 +51,7 @@ sleep 10
 docker network rm DB-stack_default 2>/dev/null || true
 
 # Deploy the stack using Docker Compose
-docker stack deploy -c ../docker-compose.yml DB-stack
+docker stack deploy -c ../Containers/docker-compose.yml DB-stack
 
 # Wait for the database to initialize
 sleep 10 # Don't remove because its really important.
