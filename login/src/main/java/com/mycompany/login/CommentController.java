@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.Controllers;
+package com.mycompany.login;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,9 +13,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.Rating;
-
-import com.mycompany.login.SessionManager;
-import com.mycompany.login.dbconnect;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

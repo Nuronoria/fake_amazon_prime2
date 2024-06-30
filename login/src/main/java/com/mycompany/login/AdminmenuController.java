@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.Controllers;
+package com.mycompany.login;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,13 +22,12 @@ import javafx.stage.Stage;
  *
  * @author jrwie
  */
-public class RegisterdoneController implements Initializable {
-
-    
+public class AdminmenuController implements Initializable {
     
     private Stage stage;
     private Scene scene;
     private Parent root;
+
     /**
      * Initializes the controller class.
      */
@@ -38,8 +37,26 @@ public class RegisterdoneController implements Initializable {
     }    
 
     @FXML
+    private void addmovie(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("adminaddmovie.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void deletemovie(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     private void back(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+        root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

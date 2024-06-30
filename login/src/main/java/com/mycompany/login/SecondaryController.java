@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.Controllers;
+package com.mycompany.login;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import com.mycompany.login.SessionManager;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;

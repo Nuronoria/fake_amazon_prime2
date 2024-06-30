@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.Controllers;
+package com.mycompany.login;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import com.mycompany.login.LoginCheck;
-import com.mycompany.login.SessionManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
