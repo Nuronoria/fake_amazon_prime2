@@ -178,6 +178,7 @@ public class AdmindeletemovieController implements Initializable {
         stage.show();
     }
 
+    @FXML
     private void deleteSelectedPerson(ActionEvent event) {
         Movie selectedMovie = table.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {
