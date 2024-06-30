@@ -12,12 +12,6 @@ ENV MYSQL_USER_FILE=/run/secrets/db_user
 ENV MYSQL_PASSWORD_FILE=/run/secrets/db_password
 ENV MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_password
 
-# Read secrets from files and set them as environment variables
-RUN echo "Setting MySQL user and password from Docker secrets" && \
-    export MYSQL_USER=$(cat $MYSQL_USER_FILE) && \
-    export MYSQL_PASSWORD=$(cat $MYSQL_PASSWORD_FILE) && \
-    export MYSQL_ROOT_PASSWORD=$(cat $MYSQL_ROOT_PASSWORD_FILE)
-
 # Copy initialization SQL scripts
 COPY init.sql /docker-entrypoint-initdb.d/
 COPY userlogin_comment.sql /docker-entrypoint-initdb.d/
@@ -29,4 +23,4 @@ COPY userlogin_movielanguage.sql /docker-entrypoint-initdb.d/
 COPY userlogin_user.sql /docker-entrypoint-initdb.d/
 
 # Expose the MySQL port
-EXPOSE 3308
+EXPOSE 3306
