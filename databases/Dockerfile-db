@@ -2,14 +2,23 @@ FROM mysql:8.0
 
 # Copy MySQL configuration and initialization files
 COPY my.cnf /etc/mysql/my.cnf
-# Set environment variables for MySQL
 
+# Define environment variables for the database name
 ENV MYSQL_DATABASE=userlogin
-ENV MYSQL_ROOT_PASSWORD=password123
-ENV MYSQL_USER=taha
-ENV MYSQL_PASSWORD=password123
 
+# Use Docker secrets for sensitive data
+# Docker secrets will be available as files in /run/secrets
+ENV MYSQL_USER_FILE=/run/secrets/db_user
+ENV MYSQL_PASSWORD_FILE=/run/secrets/db_password
+ENV MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_password
 
+# Read secrets from files and set them as environment variables
+RUN echo "Setting MySQL user and password from Docker secrets" && \
+    export MYSQL_USER=$(cat $MYSQL_USER_FILE) && \
+    export MYSQL_PASSWORD=$(cat $MYSQL_PASSWORD_FILE) && \
+    export MYSQL_ROOT_PASSWORD=$(cat $MYSQL_ROOT_PASSWORD_FILE)
+
+# Copy initialization SQL scripts
 COPY init.sql /docker-entrypoint-initdb.d/
 COPY userlogin_comment.sql /docker-entrypoint-initdb.d/
 COPY userlogin_genre.sql /docker-entrypoint-initdb.d/
