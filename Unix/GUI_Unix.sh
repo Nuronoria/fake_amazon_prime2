@@ -18,8 +18,8 @@ docker rm userlogin-db-container 2>/dev/null || true
 source db_secrets.env
 
 # Write secrets to files
-echo -n $DB_USER > db_user.txt
-echo -n $DB_PASSWORD > db_password.txt
+echo -n $DB_USER > ../Secrets/db_user.txt
+echo -n $DB_PASSWORD > ../Secrets/db_password.txt
 
 # Check if secrets already exist, create them if they do not
 if ! docker secret ls | grep -q db_user; then
