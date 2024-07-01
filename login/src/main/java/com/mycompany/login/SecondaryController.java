@@ -4,22 +4,9 @@
  */
 package com.mycompany.login;
 
-import com.jfoenix.controls.JFXButton;
-import java.net.URL;
-import javafx.util.Duration;
-import java.util.ResourceBundle;
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import com.jfoenix.controls.JFXTextArea;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,16 +18,30 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 /**
@@ -195,6 +196,12 @@ public class SecondaryController implements Initializable {
         }else{
             adminbutton.setVisible(false);
         }
+
+        /**
+ * Creates scale transitions for a movie image to enlarge and shrink it.
+* scaleIn Function from 1 to 8 (for 8 movies)
+*scaleOut Function from 1 to 8 (for 8 movies)
+ */
         
         ScaleTransition scaleIn = new ScaleTransition(Duration.seconds(0.5), movie1);
         scaleIn.setToX(1.2);
@@ -260,6 +267,14 @@ public class SecondaryController implements Initializable {
         scaleOut8.setToX(1);
         scaleOut8.setToY(1);
         
+        /**
+ * Creates fade transitions for sliders to fade them in and out.
+ *slider is here the movie description popping out when mouse is entered on the movie.
+ fadeIn 1 to 8, fadeOut 1 to 8 for all 8 movies
+ all 'sliders' are set to zero opacity (0) first.
+ */
+
+
          slider1.setOpacity(0);
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), slider1);
         fadeIn.setToValue(1);
@@ -330,7 +345,14 @@ public class SecondaryController implements Initializable {
         
         slider1.setDisable(true);
         
-        
+        /**
+ * Sets mouse event handlers to apply scale and fade transitions when interacting with movies and movieAnchorPane
+ *
+ * When the mouse enters the area of movies, the scaleIn and fadeIn animations are played,
+ * enlarging the movie ImageView and fading in slider (movie description).
+ * When the mouse exits the area of movieanchorpane, the scaleOut and fadeOut animations are played,
+ * shrinking the movie ImageView and fading out slider (movie description).
+ */
         
         movie1.setOnMouseEntered(event -> {
             scaleIn.play(); // 확대 애니메이션 재생
@@ -419,6 +441,9 @@ public class SecondaryController implements Initializable {
             scaleOut8.play(); // 확대 애니메이션 재생
             fadeOut8.play(); 
         });
+
+        /** let the arrow show if mouse entered on the mainslide
+         * it shows the next slide for other 4 movies */
         
         mainslide.setOnMouseEntered(event -> {
     
@@ -450,7 +475,14 @@ public class SecondaryController implements Initializable {
         
      
     }
-    
+    /**
+ * Handles the action of modifying the style and opacity of menu buttons when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ *
+ * This method is triggered by a mouse event (such as a button click). It sets the opacity of MenuButton1 to 0.7
+ * and changes the background color of both MenuButton1 and MenuButton0 to a dark gray color.
+ */
     @FXML
     void onUserButton(MouseEvent event) {
         MenuButton1.setOpacity(0.7);
@@ -458,7 +490,14 @@ public class SecondaryController implements Initializable {
         MenuButton0.setStyle("-fx-background-color: #494949");
         
     }
-    
+    /**
+ * Handles the action of resetting the style and opacity of menu buttons when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ *
+ * This method is triggered by a mouse event (such as when the mouse exits a button area). It sets the opacity of MenuButton1 to 0
+ * and changes the background color of both MenuButton1 and MenuButton0 to transparent.
+ */
     @FXML
     void outUserButton(MouseEvent event) {
         MenuButton1.setOpacity(0);
@@ -466,7 +505,17 @@ public class SecondaryController implements Initializable {
         MenuButton0.setStyle("-fx-background-color: transparent");
 
     } 
-    
+   /**
+ * Handles the logout action and navigates to the primary scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the logout action.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It prints a message to the console indicating
+ * that the logout was successful. It then loads the "primary.fxml" file, sets the scene to the stage, and displays
+ * the primary scene. The stage is retrieved from the source of the mouse event. Additionally, it resets the session
+ * by setting the userID in the SessionManager to 0 and the admin flag to false.
+ */ 
     @FXML
     void onClickedLogout(MouseEvent event) throws IOException {
         System.out.println("Logout was successful.");
@@ -479,7 +528,18 @@ public class SecondaryController implements Initializable {
         SessionManager.admin = false;
 
     }
-    
+    /**
+ * Handles the action of selecting a movie and navigating to the tertiary scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as clicking on an ImageView). It checks if the source of the event
+ * is an ImageView. If so, it extracts the numeric part of the ImageView's ID to determine the movie ID,
+ * prints the movie ID to the console, and sets the movie ID in the SessionManager. It then loads the "tertiary.fxml" file,
+ * sets the scene to the stage, and displays the tertiary scene. The stage is retrieved from the source of the mouse event.
+ * If the source is not an ImageView, it prints an error message to the console and returns.
+ */
     @FXML
     void onClickedMovie(MouseEvent event) throws IOException {
         
@@ -508,7 +568,15 @@ public class SecondaryController implements Initializable {
         stage.show();
 
     }
-
+/**
+ * Handles the action of transitioning to the next slide when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the slide transition.
+ *
+ * This method is triggered by a mouse event (such as a button click). It creates a TranslateTransition to move
+ * the mainslide node horizontally by -900 units over the duration of 1 second. The transition is then played,
+ * resulting in the visual effect of sliding to the next slide.
+ */
     @FXML
     private void nextSlide(MouseEvent event) {
         TranslateTransition transition = new TranslateTransition();
@@ -519,7 +587,15 @@ public class SecondaryController implements Initializable {
         transition.play();
     
     }
-
+/**
+ * Handles the action of transitioning to the previous slide when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the slide transition.
+ *
+ * This method is triggered by a mouse event (such as a button click). It creates a TranslateTransition to move
+ * the mainslide node horizontally by 900 units over the duration of 1 second. The transition is then played,
+ * resulting in the visual effect of sliding to the previous slide.
+ */
     @FXML
     private void previousSlide(MouseEvent event) {
                 TranslateTransition transition = new TranslateTransition();
@@ -529,7 +605,15 @@ public class SecondaryController implements Initializable {
         
         transition.play();
     }
-
+/**
+ * Handles the action of modifying the style and opacity of menu button items when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ *
+ * This method is triggered by a mouse event (such as when the mouse exits a button area). It sets the opacity of
+ * MenuButton2 to 0.7 and the opacity of MenuButtonItem0 and MenuButtonItem1 to 0. It also changes the background
+ * color of MenuButtonItem0, MenuButtonItem1, and MenuButton2 to transparent.
+ */
     @FXML
     private void outMenuButton2(MouseEvent event) {
         MenuButton2.setOpacity(0.7);
@@ -539,7 +623,7 @@ public class SecondaryController implements Initializable {
         MenuButtonItem1.setStyle("-fx-background-color: transparent");
         MenuButton2.setStyle("-fx-background-color: transparent");
     } 
-    
+//same like outMenuButton2
     @FXML
     private void outMenuButton21(MouseEvent event) {
         MenuButton21.setOpacity(0.7);
@@ -549,7 +633,15 @@ public class SecondaryController implements Initializable {
         MenuButtonItem11.setStyle("-fx-background-color: transparent");
         MenuButton21.setStyle("-fx-background-color: transparent");
     }
-
+/**
+ * Handles the action of modifying the style and opacity of menu button items when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ *
+ * This method is triggered by a mouse event (such as a button click). It sets the opacity of MenuButtonItem0,
+ * MenuButtonItem1, and MenuButton2 to 1. It also changes the background color of MenuButtonItem0, MenuButtonItem1,
+ * and MenuButton2 to a dark gray color (#494949).
+ */
     @FXML
     private void onMenuButton2(MouseEvent event) {
         MenuButtonItem0.setOpacity(1);
@@ -569,7 +661,16 @@ public class SecondaryController implements Initializable {
         MenuButtonItem11.setStyle("-fx-background-color: #494949");
         MenuButton21.setStyle("-fx-background-color: #494949");
     }
-
+/**
+ * Handles the navigation to the admin menu scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the navigation.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It loads the "adminmenu.fxml" file,
+ * sets the scene to the stage, and displays the admin menu scene. The stage is retrieved from the source
+ * of the mouse event.
+ */
 
     @FXML
     private void toAdmin(MouseEvent event) throws IOException {
@@ -579,7 +680,16 @@ public class SecondaryController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+/**
+ * Handles the action of refreshing the current scene and navigating to the secondary scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the refresh action.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It loads the "secondary.fxml" file,
+ * sets the scene to the stage, and displays the secondary scene, effectively refreshing the current view.
+ * The stage is retrieved from the source of the mouse event.
+ */
     @FXML
     private void onRefresh(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -598,7 +708,16 @@ public class SecondaryController implements Initializable {
     private void onAdminbutton(MouseEvent event) {
         adminbutton.setStyle("-fx-background-color: #494949");
     }
-
+/**
+ * Populates the UI components with movie data retrieved from the database.
+ *
+ * @throws SQLException If an SQL error occurs during the database query.
+ *
+ * This method fetches movie data from the userlogin.movie table, including movie IDs, titles, descriptions,
+ * and pictures. It stores these values in observable lists of UI components (JFXTextArea for descriptions,
+ * ImageView for pictures, and Label for titles). The movie data is shuffled and then assigned to the UI components.
+ * If the title list is null, the method returns immediately. The method stops after filling data for up to 8 movies.
+ */
     @FXML
     private void fillMovies() throws SQLException{
         
@@ -663,7 +782,17 @@ public class SecondaryController implements Initializable {
             }
             
     }
-    
+    /**
+ * Sets the username on the MenuButton0 based on the current session's user ID.
+ *
+ * If the user ID in the SessionManager is 0, it clears the text of MenuButton0.
+ * Otherwise, it fetches the username from the userlogin.user table using the user ID
+ * and sets the text of MenuButton0 to the retrieved username.
+ *
+ * This method connects to the database, prepares a statement to query the username,
+ * and executes the query. If the query is successful, it updates MenuButton0 with
+ * the username. If an SQL exception occurs, it prints the stack trace.
+ */
     private void setUsername(){
         
         if(SessionManager.userID == 0){
