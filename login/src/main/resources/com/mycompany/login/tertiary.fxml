@@ -17,7 +17,7 @@
    <children>
       <ScrollPane fx:id="scrollpane" prefHeight="1800.0" prefWidth="915.0">
         <content>
-          <AnchorPane prefHeight="1434.0" prefWidth="900.0" style="-fx-background-color: black;">
+          <AnchorPane prefHeight="1600.0" prefWidth="900.0" style="-fx-background-color: black;">
                <children>
                   <ImageView fitHeight="73.0" fitWidth="39.0" layoutX="19.0" layoutY="20.0" onMouseClicked="#onBackToSecond" opacity="0.5" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
@@ -126,7 +126,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox layoutX="59.0" layoutY="1114.0" prefHeight="313.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
+                  <VBox layoutX="59.0" layoutY="1114.0" prefHeight="330.0" prefWidth="782.0" style="-fx-border-color: #494949; -fx-border-radius: 5; -fx-border-width: 2;">
                      <children>
                         <Label text="Comments" textFill="WHITE">
                            <font>
@@ -278,7 +278,7 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                                  <padding>
-                                    <Insets bottom="30.0" left="25.0" />
+                                    <Insets left="25.0" />
                                  </padding>
                               </Label>
                            </children>

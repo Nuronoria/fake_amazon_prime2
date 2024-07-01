@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -44,6 +45,8 @@ public class PrimaryController implements Initializable {
     private CheckBox pass_toggle;
     @FXML
     private TextField pass_text;
+    @FXML
+    private Button skip;
     
 
     /**
@@ -51,6 +54,7 @@ public class PrimaryController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        skip.setVisible(false);
         // TODO
     }    
 
