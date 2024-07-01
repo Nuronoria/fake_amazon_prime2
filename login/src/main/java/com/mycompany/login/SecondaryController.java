@@ -600,6 +600,13 @@ public class SecondaryController implements Initializable {
         adminbutton.setStyle("-fx-background-color: #494949");
     }
 
+    /**
+     * fills the javafx elements with the movies from the database
+     * in a random order.
+     * all movie_ids from the quarry are saved in ObservableList<Integer> idList
+     * 
+     * @throws SQLException 
+     */
     @FXML
     private void fillMovies() throws SQLException{
         
@@ -607,26 +614,22 @@ public class SecondaryController implements Initializable {
         ObservableList<ImageView> pictureList = FXCollections.observableArrayList(movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8);
         ObservableList<Label> titleList = FXCollections.observableArrayList(title1,title2,title3,title4,title5,title6,title7,title8);
         
+        
+        //check if the labels imageViews and textFields exists
         int zahl =0;
-        if (titleList.get(zahl) == null) {
+        if (titleList.get(zahl) == null || pictureList.get(zahl) == null || descriptionList.get(zahl) == null) {
             return;
         }
-                
+        
+        //database quarry
         con = dbconnect.connect();
         Statement stm = con.createStatement();
-
-
         String sql = "SELECT Movie_ID,Movie_title,Movie_description,Movie_picture FROM userlogin.movie";
-
-        //rs = resultSet
         ResultSet rs = stm.executeQuery(sql);
         
-        
-            
+            //creating a List with the resultset content. and shuffeling it at the end
             try {
-                // Liste für gemischte Zeilen
                 List<Map<String, Object>> rows = new ArrayList<>();
-                // Ergebnisse in Liste von Maps speichern
                 while (rs.next()) {
                     Map<String, Object> row = new HashMap<>();
                     ResultSetMetaData metaData = rs.getMetaData();
@@ -636,12 +639,10 @@ public class SecondaryController implements Initializable {
                     }
                     rows.add(row);
                 }
-            
-                // Liste mischen
                 Collections.shuffle(rows);
                 
+                // putting the content of the list in the corresponding javafx elements
                 for (Map<String, Object> row : rows) {
-                    // Annahme: Du möchtest den Wert der Spalte "columnName" in einer Variable speichern
                     int id = (int)row.get("Movie_ID");
                     String title  = (String)row.get("Movie_title");
                     String description = (String)row.get("Movie_description");

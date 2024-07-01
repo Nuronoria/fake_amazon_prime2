@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -134,18 +135,23 @@ public class AdmindeletemovieController implements Initializable {
         // TODO
     }    
 
+    /**
+     * this method is used to load the text from the searchbar and look for a film with a similar name.
+     * after the sqlquery the results are added to the data used for a Table
+     * 
+     * @throws SQLException 
+     */
     @FXML
     private void searchDatabase() throws SQLException{
         data.clear();
         
         con = dbconnect.connect();
-        Statement stm = con.createStatement();
+        String sql = "SELECT Movie_ID,Movie_title,Movie_description,Movie_picture,Movie_banner,Movie_release,Movie_logo "
+                + "FROM userlogin.movie where Movie_title Like  ? ;";
 
-
-        String sql = "SELECT Movie_ID,Movie_title,Movie_description,Movie_picture,Movie_banner,Movie_release,Movie_logo FROM userlogin.movie where Movie_title Like'%"+searchtext.getText()+"%';";
-
-        //rs = resultSet
-        ResultSet rs = stm.executeQuery(sql);
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, "%" + searchtext.getText() + "%");
+        ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()) {
             int id = rs.getInt("Movie_ID");
@@ -169,7 +175,7 @@ public class AdmindeletemovieController implements Initializable {
         }
 
     }
-
+    
     @FXML
     private void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -178,32 +184,42 @@ public class AdmindeletemovieController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * event listener for a button to delete the selected Movie.
+     * it only deletes selected movies inside the Table table
+     * 
+     * @param event 
+     */
     @FXML
-    private void deleteSelectedPerson(ActionEvent event) {
+    private void deleteSelectedMovie(ActionEvent event) {
         Movie selectedMovie = table.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {
             data.remove(selectedMovie); // Aus ObservableList entfernen
-            deletePersonFromDatabase(selectedMovie); // Aus der Datenbank entfernen
+            deleteMovieFromDatabase(selectedMovie); // Aus der Datenbank entfernen
         } else {
             errortext.setText("no Movie selected!");
         }
     }
-    
-    private void deletePersonFromDatabase(Movie movie) {
-    // Hier müsstest du deine Logik zur Verbindung und zum Löschen aus der Datenbank einfügen
-    try (Connection conn = dbconnect.connect();
-         Statement stmt = conn.createStatement()) {
-        String query = "DELETE FROM userlogin.movie WHERE Movie_ID = " + movie.getId();
-        int rowsAffected = stmt.executeUpdate(query);
-        if (rowsAffected > 0) {
-            errortext.setText("Movie deleted!");
-        } else {
-            errortext.setText("cant delete movie! :(");
+    /**
+     * this method deletes the movie it gets from the database
+     * 
+     * @param movie the movie which should be deleted
+     */
+    private void deleteMovieFromDatabase(Movie movie) {
+        // Hier müsstest du deine Logik zur Verbindung und zum Löschen aus der Datenbank einfügen
+        try (Connection conn = dbconnect.connect();
+             Statement stmt = conn.createStatement()) {
+            String query = "DELETE FROM userlogin.movie WHERE Movie_ID = " + movie.getId();
+            int rowsAffected = stmt.executeUpdate(query);
+            if (rowsAffected > 0) {
+                errortext.setText("Movie deleted!");
+            } else {
+                errortext.setText("cant delete movie! :(");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
     
 }

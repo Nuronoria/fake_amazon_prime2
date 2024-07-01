@@ -213,6 +213,7 @@ public class AdminmovieextraController implements Initializable {
         }
         pane2.setVisible(false);
         pane1.setVisible(true);
+        unselecktall();
         
     }
 
@@ -252,6 +253,7 @@ public class AdminmovieextraController implements Initializable {
         pane1.setVisible(true);
         pane2.setVisible(false);
         errortext.setText("SQLUpdate successfully!!!");
+        unselecktall();
     }
 
     @FXML
@@ -395,5 +397,23 @@ public class AdminmovieextraController implements Initializable {
         }catch(SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * unselects all checkboxes on the second pane
+     */
+    private void unselecktall(){
+        language1.setSelected(false);
+        language2.setSelected(false);
+        language3.setSelected(false);
+        language4.setSelected(false);
+        language5.setSelected(false);
+        Genre1.setSelected(false);
+        Genre2.setSelected(false);
+        Genre3.setSelected(false);
+        Genre4.setSelected(false);
+        Genre5.setSelected(false);
+        Genre6.setSelected(false);
+        Genre7.setSelected(false);
     }
 }

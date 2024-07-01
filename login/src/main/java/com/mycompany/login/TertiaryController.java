@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,15 +18,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-import org.controlsfx.control.Rating;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +40,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -163,18 +163,37 @@ public class TertiaryController implements Initializable {
         CommentUserID = getCommentUserID(con, movieID);
         //shuffle to get random UserIDs
         Collections.shuffle(CommentUserID);
+        System.out.println(CommentUserID.size());
         
-//        for(int i = 0; i < 3; i++){
-//            int randUserId = CommentUserID.get(i);
-//            String comment = getComment(con, randUserId, movieID);
-//            String Username = getCommentUsername(con, randUserId, movieID);
-//            String Date = getCommentDate(con, randUserId, movieID);
-//            Double Rating = getCommentRating(con, randUserId, movieID);
-//            ratings[i].setRating(Rating);
-//            comments[i].setText(comment);
-//            usernames[i].setText(Username);
-//            dates[i].setText(Date);
-//        }
+        if(CommentUserID.size() > 3){
+            for (int i = 0; i < 3 ; i++){
+                int randUserId = CommentUserID.get(i);
+                String comment = getComment(con, randUserId, movieID);
+                String Username = getCommentUsername(con, randUserId, movieID);
+                String Date = getCommentDate(con, randUserId, movieID);
+                Double Rating = getCommentRating(con, randUserId, movieID);
+                ratings[i].setRating(Rating);
+                comments[i].setText(comment);
+                usernames[i].setText(Username);
+                dates[i].setText(Date);
+            }
+ 
+        }else{
+            for(int i = 0; i < CommentUserID.size(); i++){
+            int randUserId = CommentUserID.get(i);
+            String comment = getComment(con, randUserId, movieID);
+            String Username = getCommentUsername(con, randUserId, movieID);
+            String Date = getCommentDate(con, randUserId, movieID);
+            Double Rating = getCommentRating(con, randUserId, movieID);
+            ratings[i].setRating(Rating);
+            comments[i].setText(comment);
+            usernames[i].setText(Username);
+            dates[i].setText(Date);
+        }
+        }
+
+        
+
 
         
     
@@ -324,6 +343,14 @@ public class TertiaryController implements Initializable {
             System.out.println("No Genre_ID Found from DB.");
         }
     }
+    
+  /**  
+   * This method reorders labels inside a hbox so that all labels 
+   * with content are at the beginning and displayed next to each other 
+   *
+   * @param  hbox  needs an hbox id that is filled with Labels
+   * @see         HBox
+   */
     private void rearrangeLabels(HBox hbox) {
         // Temporäre Liste, um sichtbare Labels zu speichern
         List<Label> visibleLabels = new ArrayList<>();
