@@ -370,7 +370,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="MenuButtonItem0" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="109.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Alles" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem0" alignment="BASELINE_LEFT" disable="true" layoutX="269.0" layoutY="109.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Alles" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -383,7 +383,7 @@
             <Insets />
          </opaqueInsets>
       </JFXButton>
-      <JFXButton fx:id="MenuButtonItem1" alignment="BASELINE_LEFT" layoutX="269.0" layoutY="159.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Filme" textFill="WHITE">
+      <JFXButton fx:id="MenuButtonItem1" alignment="BASELINE_LEFT" disable="true" layoutX="269.0" layoutY="159.0" onMouseEntered="#onMenuButton2" onMouseExited="#outMenuButton2" opacity="0.17" prefHeight="50.0" prefWidth="100.0" style="-fx-opacity: 0;" styleClass="buttonStyle" text="Filme" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
