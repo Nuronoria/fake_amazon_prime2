@@ -622,6 +622,8 @@ public class SecondaryController implements Initializable {
         MenuButtonItem0.setStyle("-fx-background-color: transparent");
         MenuButtonItem1.setStyle("-fx-background-color: transparent");
         MenuButton2.setStyle("-fx-background-color: transparent");
+        MenuButtonItem0.setDisable(true);
+        MenuButtonItem1.setDisable(true);
     } 
 //same like outMenuButton2
     @FXML
@@ -632,6 +634,8 @@ public class SecondaryController implements Initializable {
         MenuButtonItem01.setStyle("-fx-background-color: transparent");
         MenuButtonItem11.setStyle("-fx-background-color: transparent");
         MenuButton21.setStyle("-fx-background-color: transparent");
+        MenuButtonItem01.setDisable(true);
+        MenuButtonItem11.setDisable(true);
     }
 /**
  * Handles the action of modifying the style and opacity of menu button items when a mouse event occurs.
@@ -650,6 +654,8 @@ public class SecondaryController implements Initializable {
         MenuButtonItem0.setStyle("-fx-background-color: #494949");
         MenuButtonItem1.setStyle("-fx-background-color: #494949");
         MenuButton2.setStyle("-fx-background-color: #494949");
+        MenuButtonItem0.setDisable(false);
+        MenuButtonItem1.setDisable(false);
     }
     
     @FXML
@@ -660,6 +666,8 @@ public class SecondaryController implements Initializable {
         MenuButtonItem01.setStyle("-fx-background-color: #494949");
         MenuButtonItem11.setStyle("-fx-background-color: #494949");
         MenuButton21.setStyle("-fx-background-color: #494949");
+        MenuButtonItem01.setDisable(false);
+        MenuButtonItem11.setDisable(false);
     }
 /**
  * Handles the navigation to the admin menu scene when a mouse event occurs.
