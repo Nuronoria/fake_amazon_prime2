@@ -43,12 +43,11 @@ public class LoginCheck {
     private String getPassword(){
         return(this.password);
     }
-    /*
-    public static void main(String[] args){
-        //System.out.println("ich war in der class"); 
-        LoginCheck test = new LoginCheck("Admin","1234");
-        test.userCompare();
-    }
+    
+    /**
+    * Compares the provided username and password with the database records for authentication.
+    *
+    * @return true if the username and password match a record in the database; false otherwise.
     */
     public boolean userCompare(){
         try{

@@ -37,6 +37,12 @@ public class RegisterdoneController implements Initializable {
         // TODO
     }    
 
+    /**
+    * Handles the action event to navigate back to the primary page.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("primary.fxml"));

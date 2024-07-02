@@ -71,6 +71,11 @@ public class RegisterController implements Initializable {
         // TODO
     }    
 
+    /**
+    * Toggles the visibility of the password between plain text and hidden text.
+    *
+    * @param event The MouseEvent triggered by the mouse action.
+    */
     @FXML
     private void passwordshow(MouseEvent event) {
         if(passwordpressed == false ){
@@ -95,6 +100,11 @@ public class RegisterController implements Initializable {
 //        System.out.println("pressed");
     }
 
+    /**
+    * Toggles the visibility of the repeat password between plain text and hidden text.
+    *
+    * @param event The MouseEvent triggered by the mouse action.
+    */
     @FXML
     private void repshow(MouseEvent event) {
         if(reppressed == false ){
@@ -118,6 +128,9 @@ public class RegisterController implements Initializable {
         }
     }
     
+    /**
+    * Checks the consistency of the repeated password with the original password based on their visibility states.
+    */
     @FXML
     private void passwordtextcheck(){
         if(reppressed == false && passwordpressed == false){
@@ -131,6 +144,13 @@ public class RegisterController implements Initializable {
         }
         
     }
+    
+    /**
+    * Compares the repeated password with the original password and updates the UI to reflect the result.
+    *
+    * @param a The first password string to compare.
+    * @param b The second password string to compare.
+    */
     private void passwordcheck(String a, String b){
         if(a.equals(b)){
             repcheck.setText("✓");
@@ -143,6 +163,12 @@ public class RegisterController implements Initializable {
         }
     }
 
+    /**
+    * Handles the action event for user registration.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void register(ActionEvent event) throws IOException {
         String username = username_text.getText();
@@ -214,6 +240,12 @@ public class RegisterController implements Initializable {
         }
     }
 
+    /**
+    * Handles the mouse event to navigate back to the primary page.
+    *
+    * @param event The MouseEvent triggered by the mouse click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void back(MouseEvent event) throws IOException {
         System.out.println("wechsel zu registration.");
