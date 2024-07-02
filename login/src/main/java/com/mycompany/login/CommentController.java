@@ -50,7 +50,16 @@ public class CommentController implements Initializable {
 
         // TODO
     }    
-
+/**
+ * Handles the action of navigating back to the tertiary scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the navigation.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It loads the "tertiary.fxml" file,
+ * sets the scene to the stage, and displays the tertiary scene. The stage is retrieved from the source
+ * of the mouse event.
+ */
     @FXML
     private void onBack(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("tertiary.fxml"));
@@ -59,7 +68,19 @@ public class CommentController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+/**
+ * Handles the action of sending a comment and rating when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the action.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It retrieves the rating and comment from
+ * the UI components. If either the rating or comment is empty, it shows an alert to inform the user to complete
+ * the rating and comment. Otherwise, it connects to the database, formats the current date, and calls the 
+ * sendComment method to save the comment and rating. If the comment is successfully saved, it shows a thank you
+ * alert and navigates to the tertiary scene. If the comment already exists, it shows an error alert and also
+ * navigates to the tertiary scene.
+ */
     @FXML
     private void onSend(MouseEvent event) throws IOException {
         
@@ -108,6 +129,23 @@ public class CommentController implements Initializable {
         
 
     }
+    /**
+     * Sends a comment and rating to the database for a specific user and movie.
+     *
+     * @param con      The connection to the database.
+     * @param userId   The ID of the user submitting the comment.
+     * @param movieId  The ID of the movie being commented on.
+     * @param comment  The text of the comment.
+     * @param rating   The rating given to the movie.
+     * @param date     The date when the comment was submitted.
+     * @return Boolean indicating whether the comment was successfully added or not.
+     *
+     * This method first checks if a comment already exists for the given user ID and movie ID in the userlogin.comment table.
+     * If a comment exists, it returns false. If no comment exists, it inserts the new comment into the database.
+     * If the comment is successfully added, it returns true. If any SQL exception occurs, it prints the error and returns false.
+     *
+     * @throws SQLException If an SQL error occurs.
+     */
         private void sendComment(Connection con, int userId, int movieId, String comment, double rating, String date) {
      
         try {

@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,13 +17,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.Rating;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,7 +40,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -206,7 +205,23 @@ public class TertiaryController implements Initializable {
         
         moviedescript.setStyle("-fx-text-inner-color: #d4d4d4");
     }
-    
+    /**
+ * Updates the logo of a movie in the database.
+ *
+ * @param con      The connection to the database.
+ * @param movieID  The ID of the movie whose logo is to be updated.
+ * @param filePath The path to the logo file.
+ *
+ * This method uses a PreparedStatement to update the Movie_logo field
+ * in the userlogin.movie table for the specified movie ID. The logo
+ * is read from the provided file path as a binary stream.
+ *
+ * If the update is successful, a success message is printed to the console.
+ * If no rows are affected, a message indicating that no rows were updated is printed.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws IOException  If an I/O error occurs.
+ */
         private void updateLogoInDatabase(Connection con, int movieID, String filePath) {
         String sql = "UPDATE userlogin.movie SET Movie_logo = ? WHERE Movie_ID = " + movieID;
         try (PreparedStatement pstmt = con.prepareStatement(sql);
@@ -228,6 +243,23 @@ public class TertiaryController implements Initializable {
             e.printStackTrace();
         }
     }    
+/**
+ * Updates the banner image of a movie in the database.
+ *
+ * @param con      The connection to the database.
+ * @param movieID  The ID of the movie whose banner image is to be updated.
+ * @param filePath The path to the banner image file.
+ *
+ * This method uses a PreparedStatement to update the Movie_banner field
+ * in the userlogin.movie table for the specified movie ID. The banner image
+ * is read from the provided file path as a binary stream.
+ *
+ * If the update is successful, a success message is printed to the console.
+ * If no rows are affected, a message indicating that no rows were updated is printed.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws IOException  If an I/O error occurs.
+ */
 
     private void updateImageInDatabase(Connection con, int movieID, String filePath) {
         String sql = "UPDATE userlogin.movie SET Movie_banner = ? WHERE Movie_ID = " + movieID;
@@ -251,6 +283,23 @@ public class TertiaryController implements Initializable {
         }
     }    
     
+    /**
+ * Loads the banner image of a movie from the database.
+ *
+ * @param conn    The connection to the database.
+ * @param movieID The ID of the movie whose banner image is to be loaded.
+ * @return The Image object representing the movie's banner image, or null if the image is not found or an error occurs.
+ *
+ * This method retrieves the Movie_banner field from the userlogin.movie table for the specified movie ID.
+ * The image data is read as a byte array, and an Image object is created from this data.
+ *
+ * If the image data is found and successfully read, the Image object is returned.
+ * If the image data is not found or an error occurs, null is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws IOException  If an I/O error occurs.
+ */
+
         private Image loadImageFromDatabase(Connection conn, int movieID) {
         String query = "SELECT Movie_banner FROM userlogin.movie WHERE movie_Id = " + movieID;
         try (
@@ -270,6 +319,22 @@ public class TertiaryController implements Initializable {
         }
         return null;
     }
+    /**
+ * Loads the logo image of a movie from the database.
+ *
+ * @param conn    The connection to the database.
+ * @param movieID The ID of the movie whose logo image is to be loaded.
+ * @return The Image object representing the movie's logo image, or null if the image is not found or an error occurs.
+ *
+ * This method retrieves the Movie_logo field from the userlogin.movie table for the specified movie ID.
+ * The image data is read as a byte array, and an Image object is created from this data.
+ *
+ * If the image data is found and successfully read, the Image object is returned.
+ * If the image data is not found or an error occurs, null is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws IOException  If an I/O error occurs.
+ */
     
     private Image loadLogoFromDatabase(Connection conn, int movieID) {
         String query = "SELECT Movie_logo FROM userlogin.movie WHERE movie_Id = " + movieID;
@@ -291,6 +356,16 @@ public class TertiaryController implements Initializable {
         return null;
     }
 
+/**
+ * Handles the action of navigating back to the secondary scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the navigation.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It loads the "secondary.fxml" file,
+ * sets the scene to the stage, and displays the secondary scene. The stage is retrieved from the source
+ * of the mouse event.
+ */
     @FXML
     private void onBackToSecond(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -299,7 +374,16 @@ public class TertiaryController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+/**
+ * Handles the action of navigating to the comment scene when a mouse event occurs.
+ *
+ * @param event The MouseEvent that triggers the navigation.
+ * @throws IOException If an input or output exception occurs during the loading of the FXML file.
+ *
+ * This method is triggered by a mouse event (such as a button click). It loads the "comment.fxml" file,
+ * sets the scene to the stage, and displays the comment scene. The stage is retrieved from the source
+ * of the mouse event.
+ */
     @FXML
     private void onAddComment(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("comment.fxml"));
@@ -309,7 +393,20 @@ public class TertiaryController implements Initializable {
         stage.show();
     
     }
-    
+    /**
+ * Retrieves the genres of a movie from the database and updates the visibility of genre labels.
+ *
+ * @param con      The connection to the database.
+ * @param movieId  The ID of the movie whose genres are to be retrieved.
+ *
+ * This method fetches the genre IDs associated with the specified movie ID from the userlogin.moviegenre table.
+ * For each genre ID, it retrieves the corresponding genre name from the userlogin.genre table.
+ * If a genre label's text matches the retrieved genre name, the label is made visible.
+ * After processing all genres, the labels are rearranged using the rearrangeLabels method.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws IOException  If an I/O error occurs.
+ */
     private void getMovieGenre(Connection con, int movieId) {
         genres = new Label[]{Comedy, Romance, Drama, Crime, Thriller, Horror, Mystery};
         int GenreID ;
@@ -384,7 +481,19 @@ public class TertiaryController implements Initializable {
         }
     }
 
-    
+    /**
+ * Retrieves the languages of a movie from the database and updates the visibility of language labels.
+ *
+ * @param con      The connection to the database.
+ * @param movieId  The ID of the movie whose languages are to be retrieved.
+ *
+ * This method fetches the language IDs associated with the specified movie ID from the userlogin.movielanguage table.
+ * For each language ID, it retrieves the corresponding language name from the userlogin.language table.
+ * If a language label's text matches the retrieved language name, the label is made visible.
+ * After processing all languages, the labels are rearranged using the rearrangeLabels method.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     private void getLanguages(Connection con, int movieId) {
         languages = new Label[]{Englisch, Deutsch, Spanisch, Chinesisch, Koreanisch};
         int Language_ID ;
@@ -418,7 +527,19 @@ public class TertiaryController implements Initializable {
         }
     }
     
-    
+    /**
+ * Retrieves the description of a movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param movieId  The ID of the movie whose description is to be retrieved.
+ * @return The description of the movie, or an empty string if not found or an error occurs.
+ *
+ * This method fetches the Movie_description field from the userlogin.movie table for the specified movie ID.
+ * If the description is found, it is returned as a string. If no description is found or an error occurs,
+ * an empty string is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     
     private String getMovieDescription(Connection con, int movieId) {
         String description = "";
@@ -434,6 +555,19 @@ public class TertiaryController implements Initializable {
         }
         return description;
     }
+    /**
+ * Retrieves the user IDs of the comments associated with a specific movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param movieId  The ID of the movie whose comment user IDs are to be retrieved.
+ * @return A list of user IDs who have commented on the specified movie.
+ *
+ * This method fetches the User_IDs from the userlogin.comment table for the specified movie ID.
+ * The user IDs are collected in a list and returned. If no user IDs are found or an error occurs,
+ * an empty list is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     private List<Integer> getCommentUserID (Connection con, int movieId){
         List<Integer> userIDs = new ArrayList<>();
         
@@ -452,7 +586,20 @@ public class TertiaryController implements Initializable {
         
         return userIDs;
     }
-    
+    /**
+ * Retrieves a specific comment made by a user on a movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param userId   The ID of the user who made the comment.
+ * @param movieId  The ID of the movie on which the comment was made.
+ * @return The text of the comment, or an empty string if not found or an error occurs.
+ *
+ * This method fetches the Comment_text field from the userlogin.comment table for the specified user ID and movie ID.
+ * If the comment is found, it is returned as a string. If no comment is found or an error occurs,
+ * an empty string is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     private String getComment(Connection con, int userId, int movieId) {
         String comment = "";
         try {
@@ -467,6 +614,21 @@ public class TertiaryController implements Initializable {
         }
         return comment;
     }
+    /**
+ * Retrieves the username of a user who made a comment on a specific movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param userId   The ID of the user who made the comment.
+ * @param movieId  The ID of the movie on which the comment was made.
+ * @return The username of the user who made the comment, or an empty string if not found or an error occurs.
+ *
+ * This method first fetches the User_ID from the userlogin.comment table for the specified user ID and movie ID.
+ * If the User_ID is found, it retrieves the User_name from the userlogin.user table for the retrieved User_ID.
+ * If the username is found, it is returned as a string. If no username is found or an error occurs,
+ * an empty string is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     private String getCommentUsername(Connection con, int userId, int movieId) {
         int oUserId;
         String Username = "";
@@ -490,6 +652,20 @@ public class TertiaryController implements Initializable {
         }
         return Username;
     }
+    /**
+ * Retrieves the rating given by a user in their comment on a specific movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param userId   The ID of the user who made the comment.
+ * @param movieId  The ID of the movie on which the comment was made.
+ * @return The rating given by the user in their comment, or 0.0 if not found or an error occurs.
+ *
+ * This method fetches the Comment_rating field from the userlogin.comment table for the specified user ID and movie ID.
+ * If the rating is found, it is returned as a Double. If no rating is found or an error occurs,
+ * a default value of 0.0 is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ */
     private Double getCommentRating(Connection con, int userId, int movieId) {
        
         Double Rating = (double)0;
@@ -508,7 +684,23 @@ public class TertiaryController implements Initializable {
         }
         return Rating;
     }
-    
+    /**
+ * Retrieves and formats the date of a comment made by a user on a specific movie from the database.
+ *
+ * @param con      The connection to the database.
+ * @param userId   The ID of the user who made the comment.
+ * @param movieId  The ID of the movie on which the comment was made.
+ * @return The formatted date of the comment as a string in the format "dd.MMMM.yyyy" (e.g., "01.Januar.2020"),
+ *         or an empty string if not found or an error occurs.
+ *
+ * This method fetches the Comment_date field from the userlogin.comment table for the specified user ID and movie ID.
+ * The date is then parsed from the database format "yyyy-MM-dd" and formatted into "dd.MMMM.yyyy" in German locale.
+ * If the date is found and successfully formatted, it is returned as a string. If no date is found or an error occurs,
+ * an empty string is returned.
+ *
+ * @throws SQLException If an SQL error occurs.
+ * @throws ParseException If a date parsing error occurs.
+ */
     private String getCommentDate(Connection con, int userId, int movieId) {
         String dateStr = "";
         try {
