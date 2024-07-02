@@ -1,0 +1,30 @@
+name: Build and Push Database Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-push-db-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Build Database Docker Image
+      run: docker build -t ghcr.io/${{ github.repository }}/userlogin-db:latest -f Dockerfile-db .
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Push Database Docker Image to GHCR
+      run: docker push ghcr.io/${{ github.repository }}/userlogin-db:latest

@@ -14,7 +14,8 @@ RUN apt-get update && \
         && apt-get clean
 
 # Copy JavaFX SDK to the container
-COPY library/javafx-sdk-11.x.x /usr/share/openjfx  # Replace with the correct version
+COPY library/javafx-sdk-11.x.x /usr/share/openjfx 
+ # Replace with the correct version
 
 # Set environment variables for JavaFX
 ENV PATH=$PATH:/usr/share/openjfx/bin
