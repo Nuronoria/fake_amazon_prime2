@@ -1,57 +1,68 @@
 #!/bin/bash
 
+# Navigate to the databases directory
 cd ../databases
 
+# Prompt the user to enter the database password for USER Root
 read -s -p "Enter DB Password for USER Root: " DB_PASSWORD
 echo
 
-# Save the credentials in db_secrets.env
 
+# Save the credentials in db_secrets.env
 echo "DB_PASSWORD=$DB_PASSWORD" > db_secrets.env
 
+
+# Generate a random 256-bit AES key
+aes_key=$(openssl rand -base64 32)
+
+# Print the key 
+echo "Generated AES Key: $aes_key"
+
+# Export the key as an environment variable (optional)
+export AES_KEY=$aes_key
+
+# Alternatively, save the key to a file
+echo $aes_key > ../secrets/AES_KEY.txt
+
+echo "AES key generated and saved"
+
+# Load environment variables from db_secrets.env
+source db_secrets.env
+
+# Navigate to the Secrets directory
+cd ../Secrets
+
+# Write the database password to a file
+echo -n $DB_PASSWORD > db_password.txt
+
 # Stop and remove any existing container if it exists
+docker swarm leave --force 2>/dev/null || true
 docker stop userlogin-db-container 2>/dev/null || true
 docker rm userlogin-db-container 2>/dev/null || true
 
-# Create secret files from the environment variables file
-source db_secrets.env
+# Remove the stack if it already exists to avoid conflicts
+# docker stack rm DB-stack  2>/dev/null || true
 
-cd ../Secrets
-# Write secrets to files
+# Initialize Docker Swarm if not already initialized
+docker swarm init 
 
-echo -n $DB_PASSWORD > db_password.txt
-
-#docker swarm leave --force
-
-# docker swarm init
-docker swarm init 2>/dev/null || true
-
-
-
+# Create a Docker secret for the database password if it doesn't already exist
 if ! docker secret ls | grep -q db_password; then
     docker secret create db_password db_password.txt
 else
     echo "Secret db_password already exists"
 fi
 
+# Navigate back to the databases directory
 cd ../databases
 
 # Build the Docker image
 docker build -t userlogin-db -f Dockerfile-db .
 
-# Initialize Docker Swarm if not already initialized
-# docker swarm init 2>/dev/null || true
 
-# Remove the stack if it already exists to avoid conflicts
-docker stack rm DB-stack
-
+# Wait for a moment to ensure stack is removed
 sleep 10
 
-# Replace placeholders in the SQL file with actual values
-
-
-# Copy the modified SQL file to the correct location
-# cp init_tmp.sql ../docker-entrypoint-initdb.d/init.sql
 # Remove any existing network to avoid network not found error
 docker network rm DB-stack_default 2>/dev/null || true
 
@@ -59,21 +70,21 @@ docker network rm DB-stack_default 2>/dev/null || true
 docker stack deploy -c ../Containers/docker-compose.yml DB-stack
 
 # Wait for the database to initialize
-sleep 10 # Don't remove because its really important.
+sleep 10
 
-
-
+# Navigate to the login directory
 cd ../login
+
+# Build and package the Maven project
 mvn clean package
 
+# Run the JavaFX application
 mvn javafx:run
 
-# Stop the docker swarm
+# Stop the Docker stack
 docker stack rm DB-stack
 
-# Clean up docker secrets
-
-
-# Cleanup secrets files
+# Clean up secret files
 rm ../Secrets/db_password.txt
-rm ../databases/init_tmp.sql
+rm ../Secrets/AES_KEY.txt
+rm ../databases/db_secrets.env
