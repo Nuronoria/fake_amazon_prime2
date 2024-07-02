@@ -36,6 +36,12 @@ public class AdminmenuController implements Initializable {
         // TODO
     }    
 
+    /**
+    * Handles the action event to navigate to the "adminaddmovie.fxml" screen.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void addmovie(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminaddmovie.fxml"));
@@ -45,6 +51,12 @@ public class AdminmenuController implements Initializable {
         stage.show();
     }
 
+    /**
+    * Handles the action event to navigate to the "admindeletemovie.fxml" screen.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void deletemovie(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("admindeletemovie.fxml"));
@@ -54,6 +66,12 @@ public class AdminmenuController implements Initializable {
         stage.show();
     }
 
+    /**
+    * Handles the action event to navigate back to the "secondary.fxml" screen.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
@@ -63,6 +81,12 @@ public class AdminmenuController implements Initializable {
         stage.show();
     }
 
+    /**
+    * Handles the action event to navigate to the "adminmovieextra.fxml" screen.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void languagegenre(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmovieextra.fxml"));

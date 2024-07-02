@@ -103,6 +103,11 @@ public class AdminaddmovieController implements Initializable {
         // TODO
     }    
 
+    /**
+    * Event handler for handling drag enter events on a Region node.
+    *
+    * @param event The DragEvent that triggered this handler.
+    */
     @FXML
     private void dragenterregion(DragEvent event) {
         Node source = (Node) event.getSource();
@@ -112,6 +117,11 @@ public class AdminaddmovieController implements Initializable {
         }
     }
     
+    /**
+    * Event handler for handling drag exit events on a Region node.
+    *
+    * @param event The DragEvent that triggered this handler.
+    */
     @FXML
     private void dragexitregion(DragEvent event) {
         Node source = (Node) event.getSource();
@@ -121,6 +131,11 @@ public class AdminaddmovieController implements Initializable {
         }
     }
 
+    /**
+    * Handles the action event when the next button is clicked.
+    *
+    * @param event The ActionEvent triggered by clicking the button.
+    */
     @FXML
     private void nextbutton(ActionEvent event) {
         int visible = visiblecheck();
@@ -180,6 +195,11 @@ public class AdminaddmovieController implements Initializable {
         }
     }
 
+    /**
+    * Handles the action event when the back button is clicked.
+    *
+    * @param event The ActionEvent triggered by clicking the button.
+    */
     @FXML
     private void backbutton(ActionEvent event) {
         int visible = visiblecheck();
@@ -210,6 +230,12 @@ public class AdminaddmovieController implements Initializable {
         }
     }
 
+    /**
+    * Handles the action event when the cancel button is clicked.
+    *
+    * @param event The ActionEvent triggered by clicking the button.
+    * @throws IOException If an error occurs while loading the adminmenu.fxml file.
+    */
     @FXML
     private void canclebutton(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -220,7 +246,16 @@ public class AdminaddmovieController implements Initializable {
     }
     
     
-    
+    /**
+    * Checks which pane is currently visible and returns an integer representing the visibility state.
+    *
+    * @return An integer indicating the visible pane:
+    *         - 1 if pane1 is visible and others are not
+    *         - 2 if pane2 is visible and others are not
+    *         - 3 if pane3 is visible and others are not
+    *         - 4 if pane4 is visible and others are not
+    *         - 0 if none of the panes are visible
+    */
     private int visiblecheck(){
         if(pane1.isVisible() && !pane2.isVisible() && !pane3.isVisible() && !pane4.isVisible()){
             return 1;
@@ -234,6 +269,11 @@ public class AdminaddmovieController implements Initializable {
         return 0;
     }
 
+    /**
+    * Handles the event when an image is dropped into a specific region.
+    *
+    * @param event The DragEvent representing the drag and drop operation.
+    */
     @FXML
     private void imagedropped(DragEvent event) {
         Dragboard db = event.getDragboard();
@@ -341,6 +381,11 @@ public class AdminaddmovieController implements Initializable {
             
     }
 
+    /**
+    * Handles the event when an image is dragged over a specific region to check if it can be dropped.
+    *
+    * @param event The DragEvent representing the drag and drop operation.
+    */
     @FXML
     private void imagedroppedcheck(DragEvent event) {
         switch (visiblecheck()) {
@@ -369,6 +414,12 @@ public class AdminaddmovieController implements Initializable {
         
     }
     
+    /**
+    * Checks for errors in the input fields on the first pane of the movie adding process.
+    * Displays appropriate error messages if any field is invalid or empty.
+    *
+    * @return true if there are errors, false otherwise.
+    */
     private boolean errorcheck1(){
         if(movietitlefield.getText().isEmpty()){
             errortext.setText("Please enter an Movie Title!");
@@ -420,6 +471,11 @@ public class AdminaddmovieController implements Initializable {
         return false;
     }
 
+    /**
+    * Updates the character count for the description field and changes the color of the counter based on the length.
+    *
+    * @param event The KeyEvent triggering the method.
+    */
     @FXML
     private void charcounter(KeyEvent event) {
         if(descriptionfield.getLength() <= 600){
@@ -431,6 +487,9 @@ public class AdminaddmovieController implements Initializable {
         }
     }
     
+    /**
+    * Saves the movie data to the database.
+    */
     private void saveToDatabase(){
         try (Connection con = dbconnect.connect()){
             String sql = "INSERT INTO `userlogin`.`movie` (`Movie_title`, `Movie_description`, `Movie_picture`, `Movie_banner`, `Movie_release`, `Movie_trailerURL`, `Movie_logo`) VALUES (?,?,?,?,?,?,?)";
@@ -457,6 +516,11 @@ public class AdminaddmovieController implements Initializable {
         }
     }
     
+    /**
+    * Checks if a movie with the given title already exists in the database.
+    * 
+    * @return true if a movie with the given title exists in the database, false otherwise.
+    */
     private boolean checkindatabase(){
         //con = connection
         try (Connection con = dbconnect.connect()){

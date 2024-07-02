@@ -85,9 +85,13 @@ public class AdminmovieextraController implements Initializable {
     
     private ObservableList<CheckBox> languageList = FXCollections.observableArrayList(language1,language2,language3,language4,language5);
     private ObservableList<CheckBox> genreList = FXCollections.observableArrayList(Genre1,Genre2,Genre3,Genre4,Genre5,Genre6,Genre7);
+    
     /**
-     * Initializes the controller class.
-     */
+    * Initializes the TableView with columns for displaying Movie objects.
+    *
+    * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+    * @param rb The resources used to localize the root object, or null if the root object was not localized.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TableColumn<Movie, Integer> idCol = new TableColumn<>("Movie_ID");
@@ -165,6 +169,11 @@ public class AdminmovieextraController implements Initializable {
         table.setItems(data);
     }    
     
+    /**
+    * Searches the database for movies matching the search text and populates the TableView with the results.
+    *
+    * @throws SQLException if a database access error occurs.
+    */
     @FXML
     private void searchDatabase() throws SQLException{
         data.clear();
@@ -201,6 +210,11 @@ public class AdminmovieextraController implements Initializable {
 
     }
 
+    /**
+    * Resets checkboxes and visibility settings when navigating back.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    */
     @FXML
     private void back(ActionEvent event) {
         ObservableList<CheckBox> languageList = FXCollections.observableArrayList(language1,language2,language3,language4,language5);
@@ -217,6 +231,11 @@ public class AdminmovieextraController implements Initializable {
         
     }
 
+    /**
+    * Handles the action event when a movie is selected from the TableView.
+    *
+    * @param event The ActionEvent triggered by the selection action.
+    */
     @FXML
     private void SelectMovie(ActionEvent event) {
         Movie selectedMovie = table.getSelectionModel().getSelectedItem();
@@ -235,6 +254,11 @@ public class AdminmovieextraController implements Initializable {
         }
     }
 
+    /**
+    * Handles the action event when finishing the movie selection process.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    */
     @FXML
     private void finish(ActionEvent event) {
         ObservableList<CheckBox> languageList = FXCollections.observableArrayList(language1,language2,language3,language4,language5);
@@ -256,6 +280,12 @@ public class AdminmovieextraController implements Initializable {
         unselecktall();
     }
 
+    /**
+    * Handles the action event to abort the current operation and navigate back to the admin menu.
+    *
+    * @param event The ActionEvent triggered by the button click.
+    * @throws IOException if an input or output exception occurs.
+    */
     @FXML
     private void abort(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -265,6 +295,13 @@ public class AdminmovieextraController implements Initializable {
         stage.show();
     }
     
+    /**
+    * Inserts or deletes a movie genre association in the database.
+    *
+    * @param movieId The ID of the movie.
+    * @param genreId The ID of the genre.
+    * @param hinzufuegen Whether to add (true) or remove (false) the genre association.
+    */
     private void insertMovieGenre(int movieId,int genreId, boolean hinzufuegen){
         if(genreId == 0){
             System.out.println("GenreID == 0 getGenreId broke!!!");
@@ -302,6 +339,12 @@ public class AdminmovieextraController implements Initializable {
         }
     }
     
+    /**
+    * Retrieves the genre ID from the database based on the genre name.
+    *
+    * @param genre The name of the genre.
+    * @return The genre ID if found in the database; otherwise, returns 0.
+    */
     private int getGenreId(String genre){
         try(Connection con = dbconnect.connect()) {
             String sql ="SELECT Genre_ID FROM userlogin.genre WHERE Genre_name = ?";
@@ -319,6 +362,12 @@ public class AdminmovieextraController implements Initializable {
         return 0;
     }
     
+    /**
+    * Retrieves the language ID from the database based on the language name.
+    *
+    * @param language The name of the language.
+    * @return The language ID if found in the database; otherwise, returns 0.
+    */
     private int getLanguageId(String language){
         try(Connection con = dbconnect.connect()) {
             String sql ="SELECT Language_ID FROM userlogin.language WHERE Language_name = ?";
@@ -336,6 +385,13 @@ public class AdminmovieextraController implements Initializable {
         return 0;
     }
     
+    /**
+    * Inserts or deletes a movie language association in the database.
+    *
+    * @param movieId The ID of the movie.
+    * @param languageId The ID of the language.
+    * @param hinzufuegen Whether to add (true) or remove (false) the language association.
+    */
     private void insertMovieLanguage(int movieId,int languageId, boolean hinzufuegen){
         if(languageId == 0){
             System.out.println("LanguageID == 0 getLanguageId broke!!!");
@@ -373,6 +429,9 @@ public class AdminmovieextraController implements Initializable {
         }
     }
     
+    /**
+    * Sets checkboxes based on the database entries for genres and languages associated with the current movie.
+    */
     private void setcheckboxes(){
         ObservableList<CheckBox> languageList = FXCollections.observableArrayList(language1,language2,language3,language4,language5);
         ObservableList<CheckBox> genreList = FXCollections.observableArrayList(Genre1,Genre2,Genre3,Genre4,Genre5,Genre6,Genre7);
@@ -400,8 +459,8 @@ public class AdminmovieextraController implements Initializable {
     }
     
     /**
-     * unselects all checkboxes on the second pane
-     */
+    * Clears the selection of all language and genre checkboxes.
+    */
     private void unselecktall(){
         language1.setSelected(false);
         language2.setSelected(false);

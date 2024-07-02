@@ -51,6 +51,15 @@ public class RegisterCheck {
         return this.email;
     }
 
+    /**
+    * Registers a new user in the database.
+    *
+    * @return An integer indicating the registration status:
+    *         - 0 if an error occurred during registration or database connection.
+    *         - 1 if a user with the same username already exists.
+    *         - 2 if a user with the same email already exists.
+    *         - 3 if registration is successful.
+    */
     public int registerUser() {
         try {
             con = dbconnect.connect();

@@ -53,8 +53,11 @@ public class AdmindeletemovieController implements Initializable {
     private Label errortext;
 
     /**
-     * Initializes the controller class.
-     */
+    * Initializes the table columns and sets up cell factories for displaying Movie properties.
+    *
+    * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+    * @param rb The resources used to localize the root object, or null if the root object was not localized.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TableColumn<Movie, Integer> idCol = new TableColumn<>("Movie_ID");
@@ -176,6 +179,12 @@ public class AdmindeletemovieController implements Initializable {
 
     }
     
+    /**
+    * Handles the action to navigate back to the admin menu scene.
+    *
+    * @param event The action event triggering the navigation.
+    * @throws IOException If there is an error loading the "adminmenu.fxml" file.
+    */
     @FXML
     private void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
