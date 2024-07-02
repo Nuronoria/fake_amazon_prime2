@@ -146,7 +146,7 @@ public class CommentController implements Initializable {
      *
      * @throws SQLException If an SQL error occurs.
      */
-        private Boolean sendComment(Connection con, int userId, int movieId, String comment, double rating, String date) {
+        private void sendComment(Connection con, int userId, int movieId, String comment, double rating, String date) {
      
         try {
             Statement stm = con.createStatement();
