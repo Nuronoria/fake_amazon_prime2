@@ -14,16 +14,16 @@ echo "DB_PASSWORD=$DB_PASSWORD" > db_secrets.env
 
 # Generate a random 256-bit AES key
 # Generate 32 bytes of raw data and encode to base64
-#aes_key=$(openssl rand 32 | openssl base64)
+aes_key=$(openssl rand 32 | openssl base64)
 
 # Print the key 
-#echo "Generated AES Key: $aes_key"
+echo "Generated AES Key: $aes_key"
 
 # Export the key as an environment variable (optional)
-#export AES_KEY=$aes_key
+export AES_KEY=$aes_key
 
 # Alternatively, save the key to a file
-echo "MySuperSecretKey" > ../secrets/AES_KEY.txt
+# echo "MySuperSecretKey" > ../secrets/AES_KEY.txt
 
 echo "AES key generated and saved"
 
@@ -82,8 +82,19 @@ mvn clean package
 # Run the JavaFX application
 mvn javafx:run
 
+
+read -p "Do you want to stop and remove the Docker container? (yes/no): " USER_RESPONSE
+
+if [ "$USER_RESPONSE" == "yes" ]; then
+    # Stop the Docker stack
+    docker stack rm DB-stack
+else
+    echo "Docker container will keep running."
+fi
+
 # Stop the Docker stack
 docker stack rm DB-stack
+
 
 # Clean up secret files
 rm ../Secrets/db_password.txt
