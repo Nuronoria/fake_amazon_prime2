@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `userlogin` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `userlogin`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: userlogin
+-- Host: localhost    Database: userlogin
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	8.0.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,10 +33,10 @@ CREATE TABLE `comment` (
   UNIQUE KEY `Comment_ID_UNIQUE` (`Comment_ID`),
   KEY `movie_idx` (`Movie_ID`),
   KEY `user_idx` (`User_ID`),
-  CONSTRAINT `movie` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `movie` FOREIGN KEY (`Movie_ID`) REFERENCES `movie` (`Movie_ID`),
+  CONSTRAINT `user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`),
   CONSTRAINT `comment_chk_1` CHECK (((`Comment_rating` >= 1) and (`Comment_rating` <= 5)))
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (18,1,8,'\"admin test\"',4,'2024-06-29'),(19,1,12,'\"\"',4,'2024-06-29');
+INSERT INTO `comment` VALUES (1,2,1,'\"Super Drama! Tolle Effekte und empfehlenswert!\"',5,'2024-04-01'),(2,2,2,'\"Super Film! Tolle Effekte und spannende Story. Absolut empfehlenswert!\"',5,'2024-06-19'),(3,3,2,'\"Der Film war insgesamt in Ordnung. Die Handlung hatte einige interessante Momente.\"',3,'2024-05-23'),(4,4,2,'\"Leider hat mich der Film enttäuscht. Die Handlung war vorhersehbar und es fehlte an Spannung.\"',1,'2024-04-11'),(5,3,1,'\"War super kindsch und ich mag das Ende nicht.\"',2,'2024-04-03'),(6,4,1,'\"Es war so traurig, dass ich weinen musste.\"',4,'2024-04-04'),(7,2,3,'\"Ein Meisterwerk! Fesselnde Handlung und großartige Schauspieler. 5 Sterne von 5. Absolut sehenswert!\"',5,'2022-02-03'),(8,3,3,'\"Sehr unterhaltsam und gut gemacht, aber ein paar Schwächen.  Empfehlenswert!\"',4,'2023-03-04'),(9,4,3,'\"Spannend und gut gemacht, aber nicht perfekt.\"',3,'2023-05-08'),(10,2,4,'\n\"Packende Handlung und starke Performances. Kleine Mängel, aber sehenswert!\"',4,'2023-06-09'),(11,3,4,'\n\"Enttäuschend und langatmig. Keine fesselnde Story. Nicht empfehlenswert.\"',1,'2024-01-02'),(12,4,4,'\"Gute Ansätze, aber nicht durchgehend spannend. Kann man sich anschauen.\"',3,'2023-08-09'),(15,1,1,'\"nicht so meins.. hätte besser sein können.\"',2,'2024-06-20'),(18,5,1,'\"Einfach schauen!!\"',5,'2024-06-27');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-30 17:58:43
+-- Dump completed on 2024-06-30 19:58:10

@@ -13,16 +13,17 @@ echo "DB_PASSWORD=$DB_PASSWORD" > db_secrets.env
 
 
 # Generate a random 256-bit AES key
-aes_key=$(openssl rand -base64 32)
+# Generate 32 bytes of raw data and encode to base64
+#aes_key=$(openssl rand 32 | openssl base64)
 
 # Print the key 
-echo "Generated AES Key: $aes_key"
+#echo "Generated AES Key: $aes_key"
 
 # Export the key as an environment variable (optional)
-export AES_KEY=$aes_key
+#export AES_KEY=$aes_key
 
 # Alternatively, save the key to a file
-echo $aes_key > ../secrets/AES_KEY.txt
+echo "MySuperSecretKey" > ../secrets/AES_KEY.txt
 
 echo "AES key generated and saved"
 
