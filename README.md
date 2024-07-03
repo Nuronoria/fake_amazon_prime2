@@ -1,4 +1,5 @@
 # Amazon Prime Imitation - JavaFX Project
+This is an University Project From the UAS
 
 ## Description
 This project is a JavaFX-based application that imitates the famous Amazon Prime service. It includes scripts and configurations for setting up the environment, database work, and running the application.
