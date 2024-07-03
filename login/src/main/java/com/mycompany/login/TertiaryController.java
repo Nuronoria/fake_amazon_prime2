@@ -440,14 +440,6 @@ public class TertiaryController implements Initializable {
             System.out.println("No Genre_ID Found from DB.");
         }
     }
-    
-  /**  
-   * This method reorders labels inside a hbox so that all labels 
-   * with content are at the beginning and displayed next to each other 
-   *
-   * @param  hbox  needs an hbox id that is filled with Labels
-   * @see         HBox
-   */
     private void rearrangeLabels(HBox hbox) {
         // Temporäre Liste, um sichtbare Labels zu speichern
         List<Label> visibleLabels = new ArrayList<>();

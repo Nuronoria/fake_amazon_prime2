@@ -24,4 +24,18 @@ This project is a JavaFX-based application that imitates the famous Amazon Prime
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/amazon-prime-imitation.git
-   cd amazon-prime-imitation
+   cd fake-amazon-prime
+````
+
+2. **Navigate to the set repo based on your OS:**
+
+```bash
+   cd Unix // for Unix users
+   cd Windows // for windows users
+````
+3. **Run the Setup and Gui Scripts**:
+
+```bash 
+   bash Setup_Unix.sh 
+   bash GUI_Unix.sh 
+`````
